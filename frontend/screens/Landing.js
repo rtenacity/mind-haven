@@ -6,6 +6,10 @@ import {
   KaiseiOpti_700Bold,
   KaiseiOpti_400Regular,
 } from "@expo-google-fonts/kaisei-opti";
+import {Dimensions} from "react-native";
+
+const { width, height } = Dimensions.get('window');
+
 export default function LandingScreen({ navigation }) {
   let [fontsLoaded] = useFonts({
     KaiseiOpti_700Bold,
@@ -28,12 +32,13 @@ export default function LandingScreen({ navigation }) {
       <Image
         source={require("../assets/logo.png")}
         style={{
-          
+          height: height * 0.4,
+          width: width * 0.8
         }}
       />
       <View
         style={{
-         
+
         }}
       >
         <Text
@@ -41,7 +46,7 @@ export default function LandingScreen({ navigation }) {
             backgroundColor: "#AEC5EB",
             fontFamily: "KaiseiOpti_700Bold",
             color: "#331B4B",
-            fontSize: 50,
+            fontSize: 0.11 * width,
           }}
         >
           {"The Mind \nHaven"}
@@ -51,8 +56,8 @@ export default function LandingScreen({ navigation }) {
           style={{
             backgroundColor: "#AEC5EB",
             fontFamily: "KaiseiOpti_400Regular",
+            fontSize: 0.06 * width,
             color: "#331B4B",
-            fontSize: 25,
           }}
         >
           Lorem ipsum dolor sit amet, consectetur adipiscing
@@ -60,17 +65,17 @@ export default function LandingScreen({ navigation }) {
       </View>
       <View
         style={{
-          
+          alignItems: 'center'
         }}
       >
         <Button
           title="Sign Up"
           onPress={() => navigation.navigate("Dashboard")}
-          buttonStyle={{ height: 70, width: 360, borderRadius: 37, margin: 10 }}
+          buttonStyle={{ height: 0.09 * height, width: 0.83 * width, borderRadius: 0.03 * height, marginTop: 0.05 * height }}
           titleStyle={{
             fontFamily: "KaiseiOpti_400Regular",
             color: "black",
-            fontSize: 31,
+            fontSize: 0.07 * width,
           }}
           color="#8A7DDC"
         />
@@ -78,11 +83,11 @@ export default function LandingScreen({ navigation }) {
         <Button
           title="Log In"
           onPress={() => navigation.navigate("Dashboard")}
-          buttonStyle={{ height: 70, width: 360, borderRadius: 37, margin: 10 }}
+          buttonStyle={{ height: 0.09 * height, width: 0.83 * width, borderRadius: 0.03 * height, margin: 10 }}
           titleStyle={{
             fontFamily: "KaiseiOpti_400Regular",
             color: "black",
-            fontSize: 31,
+            fontSize: 0.07 * width,
           }}
           color="white"
         />

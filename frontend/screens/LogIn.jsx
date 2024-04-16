@@ -85,6 +85,7 @@ export default LogIn = ({}) => {
                         fontSize: 0.05 * width
                     }}
                     placeholder='Enter Password'
+                    secureTextEntry={true}
                 >                
                 </TextInput>
             </View>

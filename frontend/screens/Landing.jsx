@@ -82,7 +82,7 @@ export default function LandingScreen({ navigation }) {
 
         <Button
           title="Log In"
-          onPress={() => navigation.navigate("Dashboard")}
+          onPress={() => navigation.navigate("Login")}
           buttonStyle={{ height: 0.09 * height, width: 0.83 * width, borderRadius: 0.03 * height, margin: 10 }}
           titleStyle={{
             fontFamily: "KaiseiOpti_400Regular",

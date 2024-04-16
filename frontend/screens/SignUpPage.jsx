@@ -48,7 +48,7 @@ export default function SignUpPageScreen({ navigation }) {
           />
           <Text style={styles.orText}>or</Text>
           <Button
-            title="Perfer not say"
+            title="Prefer not say"
             onPress={() => navigation.navigate("SignUpOptions")}
             buttonStyle={styles.buttonContainer}
             titleStyle={styles.buttonText}

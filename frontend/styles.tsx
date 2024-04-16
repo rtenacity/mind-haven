@@ -12,21 +12,19 @@ const styles = StyleSheet.create({
         fontFamily: "KaiseiOpti_700Bold",
         color: "#331B4B",
         fontSize: 0.12 * width,
-        marginVertical: 0.03 * width,
-        marginHorizontal: 0.06 * width,
+        margin: 0.05 * width,
     },
     subtitleText:{ 
         fontFamily: "KaiseiOpti_400Regular",
         color: "#331B4B",
         fontSize: 0.06 * width,
-        margin: 0.03 * width,
+        marginHorizontal: 0.05 * width,
     },
     normalText:{ 
         fontFamily: "KaiseiOpti_400Regular",
         color: "#331B4B",
-        fontSize: 0.04 * width,
-        marginVertical: 0.03 * width,
-        marginHorizontal: 0.06 * width,
+        fontSize: 0.04 * width,  
+        margin: 0.045 * width,
     },
     orText:{ 
         fontFamily: "KaiseiOpti_400Regular",
@@ -37,8 +35,8 @@ const styles = StyleSheet.create({
     buttonContainer:{ 
         height: 0.08 * height, 
         width: 0.85 * width, 
-        borderRadius: 0.1 * width, 
-        margin: 0.02 * width
+        borderRadius: 0.09 * width, 
+        margin: 0.02 * width,
     },
     buttonText:{ 
         fontFamily: "KaiseiOpti_400Regular",
@@ -56,22 +54,26 @@ const styles = StyleSheet.create({
         width: 0.85 * width,
     },
     inputContainer:{ 
-        height: 0.08 * height, 
-        width: 0.83 * width, 
-        borderRadius: 0.09 * width, 
-        margin: 0.02 * width,
-        backgroundColor:"white",
-        paddingHorizontal: 0.06 * width
+        backgroundColor: "white",
+        width: 0.85 * width,
+        height: 0.08 * height,
+        borderRadius: 0.03 * height,
+        padding: 0.05 * width,
+        fontSize: 0.05 * width,
     },
-  inputText: { 
+    inputText: { 
         height: 0.08 * height, 
         width: 0.83 * width, 
         borderRadius: 0.09 * width, 
         margin: 0.02 * width,
         backgroundColor:"white"
     },
-
-
+    fieldText: {
+      fontFamily: "KaiseiOpti_400Regular",
+      color: "#331B4B",
+      fontSize: 0.05 * width,
+      margin: 0.02 * width,
+    }
   });
   
 export default styles;

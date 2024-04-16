@@ -7,6 +7,10 @@ import {
   KaiseiOpti_700Bold,
   KaiseiOpti_400Regular,
 } from "@expo-google-fonts/kaisei-opti";
+import {Dimensions} from "react-native";
+
+const { width, height } = Dimensions.get('window');
+
 export default function LandingScreen({ navigation }) {
   let [fontsLoaded] = useFonts({
     KaiseiOpti_700Bold,

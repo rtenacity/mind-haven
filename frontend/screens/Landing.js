@@ -1,6 +1,7 @@
 import * as React from "react";
 import { View, Text, ActivityIndicator, Image } from "react-native";
 import { Button } from "@rneui/themed";
+import styles from "../styles";
 import {
   useFonts,
   KaiseiOpti_700Bold,
@@ -18,72 +19,29 @@ export default function LandingScreen({ navigation }) {
 
   return (
     <View
-      style={{
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#AEC5EB",
-      }}
+      style={styles.container}
     >
-      <Image
-        source={require("../assets/logo.png")}
-        style={{
-          
-        }}
-      />
-      <View
-        style={{
-         
-        }}
-      >
-        <Text
-          style={{
-            backgroundColor: "#AEC5EB",
-            fontFamily: "KaiseiOpti_700Bold",
-            color: "#331B4B",
-            fontSize: 50,
-          }}
-        >
-          {"The Mind \nHaven"}
-        </Text>
-
-        <Text
-          style={{
-            backgroundColor: "#AEC5EB",
-            fontFamily: "KaiseiOpti_400Regular",
-            color: "#331B4B",
-            fontSize: 25,
-          }}
-        >
+      <Image source={require("../assets/logo.png")} style={styles.bigLogo} />
+      <View style={{}}>
+        <Text style={styles.titleText}>{"The Mind \nHaven"}</Text>
+        <Text style={styles.subtitleText}>
           Lorem ipsum dolor sit amet, consectetur adipiscing
         </Text>
       </View>
-      <View
-        style={{
-          
-        }}
-      >
+      <View>
         <Button
           title="Sign Up"
-          onPress={() => navigation.navigate("Dashboard")}
-          buttonStyle={{ height: 70, width: 360, borderRadius: 37, margin: 10 }}
-          titleStyle={{
-            fontFamily: "KaiseiOpti_400Regular",
-            color: "black",
-            fontSize: 31,
-          }}
+          onPress={() => navigation.navigate("SignUp")}
+          buttonStyle={styles.buttonContainer}
+          titleStyle={styles.buttonText}
           color="#8A7DDC"
         />
 
         <Button
           title="Log In"
           onPress={() => navigation.navigate("Dashboard")}
-          buttonStyle={{ height: 70, width: 360, borderRadius: 37, margin: 10 }}
-          titleStyle={{
-            fontFamily: "KaiseiOpti_400Regular",
-            color: "black",
-            fontSize: 31,
-          }}
+          buttonStyle={styles.buttonContainer}
+          titleStyle={styles.buttonText}
           color="white"
         />
       </View>

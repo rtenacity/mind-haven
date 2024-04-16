@@ -4,6 +4,8 @@ import LandingScreen from './screens/Landing';
 import DashboardScreen from './screens/Dashboard';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SignUpPageScreen from './screens/SignUpPage';
+import SignUpOptionsScreen from './screens/SignUpOptions';
 
 const Stack = createNativeStackNavigator();
 
@@ -13,6 +15,8 @@ function App() {
       <Stack.Navigator  screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Landing" component={LandingScreen} />
         <Stack.Screen name="Dashboard" component={DashboardScreen} />
+        <Stack.Screen name="SignUp" component={SignUpPageScreen} />
+        <Stack.Screen name="SignUpOptions" component={SignUpOptionsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

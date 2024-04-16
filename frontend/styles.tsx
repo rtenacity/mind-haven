@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
         fontFamily: "KaiseiOpti_700Bold",
         color: "#331B4B",
         fontSize: 0.12 * width,
-        margin: 0.03 * width,
+        marginVertical: 0.03 * width,
+        marginHorizontal: 0.06 * width,
     },
     subtitleText:{ 
         fontFamily: "KaiseiOpti_400Regular",
@@ -24,7 +25,8 @@ const styles = StyleSheet.create({
         fontFamily: "KaiseiOpti_400Regular",
         color: "#331B4B",
         fontSize: 0.04 * width,
-        margin: 0.03 * width,
+        marginVertical: 0.03 * width,
+        marginHorizontal: 0.06 * width,
     },
     orText:{ 
         fontFamily: "KaiseiOpti_400Regular",

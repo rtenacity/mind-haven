@@ -1,6 +1,6 @@
 import * as React from "react";
 import { View, Text, ActivityIndicator, Image, TextInput } from "react-native";
-import { Button, Icon } from "@rneui/themed";
+import { Button, SocialIcon } from "@rneui/themed";
 import styles from "../styles";
 import {
   useFonts,
@@ -21,12 +21,13 @@ export default function Auth({ navigation }) {
   }
 
   return (
-    <View>
+  /*
+  <View>
       <Button
         title="Google"
         onPress={() => navigation.navigate("Dashboard")}
         icon = {
-          <Icon name = "google" type = "font-awesome" />
+          <SocialIcon type="google"/>
         }
         buttonStyle={styles.buttonContainer}
         titleStyle={styles.buttonText}
@@ -53,6 +54,36 @@ export default function Auth({ navigation }) {
         titleStyle={styles.buttonText}
         color="white"
       />
+    </View>
+    */
+   <View>
+      <SocialIcon
+        title="Sign In With Google"
+        color="#000"
+        button
+        light
+        type="google"
+        style={styles.buttonContainer}
+        fontStyle={styles.buttonText}
+    ></SocialIcon>
+    <SocialIcon
+        title="Sign In With Apple"
+        color="#000"
+        button
+        light
+        type="apple"
+        style={styles.buttonContainer}
+        fontStyle={styles.buttonText}
+    ></SocialIcon>
+    <SocialIcon
+        title="Sign In With Apple"
+        color="#000"
+        button
+        light
+        type="facebook"
+        style={styles.buttonContainer}
+        fontStyle={styles.buttonText}
+    ></SocialIcon>
     </View>
   );
 }

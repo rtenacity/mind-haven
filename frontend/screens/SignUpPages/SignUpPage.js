@@ -1,7 +1,7 @@
 import * as React from "react";
 import { View, Text, ActivityIndicator, Image, TextInput } from "react-native";
 import { Button } from "@rneui/themed";
-import styles from "../styles";
+import styles from "../../styles";
 import {
   useFonts,
   KaiseiOpti_700Bold,
@@ -24,7 +24,7 @@ export default function SignUpPageScreen({ navigation }) {
     <View style={styles.container}>
       <View>
         <Image
-          source={require("../assets/logo.png")}
+          source={require("../../assets/logo.png")}
           style={styles.normalLogo}
         />
         <View style={{}}>

@@ -67,6 +67,13 @@ const styles = StyleSheet.create({
         margin: 10,
         backgroundColor:"white"
     },
+    errorText:{ 
+        fontFamily: "KaiseiOpti_400Regular",
+        color: "#331B4B",
+        fontSize: 15,
+        margin: 10,
+        
+    },
 
 
   });

@@ -7,7 +7,7 @@ import {
 
 const { width, height } = Dimensions.get('window');
 
-export default LogIn = ({}) => {
+export default function LogIn ({}) {
     return (
         <View
             style = {{
@@ -74,7 +74,7 @@ export default LogIn = ({}) => {
                         fontSize: 0.06 * width,
                         marginTop: width * 0.1
                     }}
-                >{"Password"}</Text>
+                >Password</Text>
                 <TextInput
                     style = {{
                         backgroundColor: "white",

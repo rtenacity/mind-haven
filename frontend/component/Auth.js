@@ -1,6 +1,6 @@
 import * as React from "react";
 import { View, Text, ActivityIndicator, Image, TextInput } from "react-native";
-import { Button } from "@rneui/themed";
+import { Button, Icon } from "@rneui/themed";
 import styles from "../styles";
 import {
   useFonts,
@@ -25,19 +25,29 @@ export default function Auth({ navigation }) {
       <Button
         title="Google"
         onPress={() => navigation.navigate("Dashboard")}
+        icon = {
+          <Icon name = "google" type = "font-awesome" />
+        }
         buttonStyle={styles.buttonContainer}
         titleStyle={styles.buttonText}
         color="white"
+        iconLeft
       />
       <Button
         title="Apple"
         onPress={() => navigation.navigate("Dashboard")}
+        icon = {
+          <Icon name = "apple" type = "font-awesome"/>
+        }
         buttonStyle={styles.buttonContainer}
         titleStyle={styles.buttonText}
         color="white"
       />
       <Button
         title="Facebook"
+        icon = {
+          <Icon name = "facebook" type = "font-awesome"/>
+        }
         onPress={() => navigation.navigate("Dashboard")}
         buttonStyle={styles.buttonContainer}
         titleStyle={styles.buttonText}

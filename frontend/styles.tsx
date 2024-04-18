@@ -1,4 +1,5 @@
-import { StyleSheet} from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     container: {
@@ -10,61 +11,61 @@ const styles = StyleSheet.create({
     titleText:{ 
         fontFamily: "KaiseiOpti_700Bold",
         color: "#331B4B",
-        fontSize: 50,
-        margin: 10,
+        fontSize: 0.12 * width,
+        margin: 0.05 * width,
     },
     subtitleText:{ 
         fontFamily: "KaiseiOpti_400Regular",
         color: "#331B4B",
-        fontSize: 25,
-        margin: 10,
+        fontSize: 0.06 * width,
+        marginHorizontal: 0.05 * width,
     },
     normalText:{ 
         fontFamily: "KaiseiOpti_400Regular",
         color: "#331B4B",
-        fontSize: 18,
-        margin: 10,
+        fontSize: 0.04 * width,  
+        margin: 0.045 * width,
     },
     orText:{ 
         fontFamily: "KaiseiOpti_400Regular",
         color: "#331B4B",
-        fontSize: 35,
+        fontSize: 0.08 * width,
         textAlign: "center",
     },
     buttonContainer:{ 
-        height: 70, 
-        width: 360, 
-        borderRadius: 37, 
-        margin: 10
+        height: 0.075 * height, 
+        width: 0.85 * width, 
+        borderRadius: 0.09 * width, 
+        margin: 0.02 * width,
     },
     buttonText:{ 
         fontFamily: "KaiseiOpti_400Regular",
         color: "black",
-        fontSize: 31,
+        fontSize: 0.045 * width,
     },
     normalLogo:{
-        height: 141,
-        width: 155,
+        height: height * 0.15,
+        width: width * 0.35,
         alignSelf: "center",
         
     },
     bigLogo:{
-        height: 334,
-        width: 368,
+        height: 0.38 * height,
+        width: 0.85 * width,
     },
     inputContainer:{ 
-        height: 70, 
-        width: 360, 
-        borderRadius: 37, 
-        margin: 10,
-        backgroundColor:"white",
-        paddingHorizontal: 25
+        backgroundColor: "white",
+        width: 0.85 * width,
+        height: 0.08 * height,
+        borderRadius: 0.03 * height,
+        padding: 0.05 * width,
+        fontSize: 0.05 * width,
     },
-    inputText:{ 
-        height: 70, 
-        width: 360, 
-        borderRadius: 37, 
-        margin: 10,
+    inputText: { 
+        height: 0.08 * height, 
+        width: 0.83 * width, 
+        borderRadius: 0.09 * width, 
+        margin: 0.02 * width,
         backgroundColor:"white"
     },
     errorText:{ 
@@ -74,8 +75,12 @@ const styles = StyleSheet.create({
         margin: 10,
         
     },
-
-
+    fieldText: {
+      fontFamily: "KaiseiOpti_400Regular",
+      color: "#331B4B",
+      fontSize: 0.05 * width,
+      margin: 0.02 * width,
+    },
   });
   
 export default styles;

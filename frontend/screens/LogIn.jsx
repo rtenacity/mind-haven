@@ -3,18 +3,15 @@ import {
     View, Text, Dimensions,
     Image, TextInput
 } from 'react-native';
-
+import styles from "../styles"
+import Auth from "../component/Auth"
 
 const { width, height } = Dimensions.get('window');
 
 export default function LogIn ({}) {
     return (
         <View
-            style = {{
-                flex: 1,
-                backgroundColor: "#AEC5EB",
-                justifyContent: "center",
-            }}
+            style = {styles.container}
         >
             <View
             style={{
@@ -24,69 +21,39 @@ export default function LogIn ({}) {
             >
                 <Image
                     source={require("../assets/logo.png")}
-                    style={{
-                        height: height * 0.15,
-                        width: width * 0.35
-                    }}
+                    style={styles.normalLogo}
                 />
                 <Text
-                    style={{
-                        backgroundColor: "#AEC5EB",
-                        fontFamily: "KaiseiOpti_700Bold",
-                        color: "#331B4B",
-                        fontSize: 0.11 * width,
-                    }}
+                    style={styles.titleText}
                 >{"Welcome Back"}</Text>
             </View>
-            <View
-                style = {{
-                    alignItems: "left",
-                    justifyContent: "left",
-                    margin: width * 0.1
-                }}
-            >
+            <View>
                 <Text
-                    style={{
-                        backgroundColor: "#AEC5EB",
-                        fontFamily: "KaiseiOpti_700Bold",
-                        color: "#331B4B",
-                        fontSize: 0.06 * width,
-                    }}
+                    style={styles.fieldText}
                 >{"Username"}</Text>
                 
                 <TextInput
-                    style = {{
-                        backgroundColor: "white",
-                        width: 0.8 * width,
-                        height: 0.08 * height,
-                        borderRadius: 0.03 * height,
-                        padding: 0.05 * width,
-                        fontSize: 0.05 * width
-                    }}
+                    style = {styles.inputContainer}
                     placeholder='Enter Username'
                 >                
                 </TextInput>
                 <Text
-                    style={{
-                        backgroundColor: "#AEC5EB",
-                        fontFamily: "KaiseiOpti_700Bold",
-                        color: "#331B4B",
-                        fontSize: 0.06 * width,
-                        marginTop: width * 0.1
-                    }}
-                >Password</Text>
+                    style={styles.fieldText}
+                >{"Password"}</Text>
                 <TextInput
-                    style = {{
-                        backgroundColor: "white",
-                        width: 0.8 * width,
-                        height: 0.08 * height,
-                        borderRadius: 0.03 * height,
-                        padding: 0.05 * width,
-                        fontSize: 0.05 * width
-                    }}
+                    style = {styles.inputContainer}
                     placeholder='Enter Password'
+                    secureTextEntry={true}
                 >                
                 </TextInput>
+            </View>
+            <View>
+              <Text style = {styles.orText}>
+                Or
+              </Text>
+            </View>
+            <View>
+              <Auth/>
             </View>
         </View>
     )

@@ -20,8 +20,7 @@ function App() {
         <Stack.Screen name="Dashboard" component={DashboardScreen} />
         <Stack.Screen name="SignUp" component={SignUpPageScreen} />
         <Stack.Screen name="SignUpOptions" component={SignUpOptionsScreen} />
-        <Stack.Screen name="PasswordSignUp" component={PasswordSignUpScreen} />
-        <Stack.Screen name="Login" component={LogIn} />
+        <Stack.Screen name="LogIn" component={LogIn} />
       </Stack.Navigator>
     </NavigationContainer>
   );

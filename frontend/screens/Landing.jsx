@@ -43,7 +43,7 @@ export default function LandingScreen({ navigation }) {
 
         <Button
           title="Log In"
-          onPress={() => navigation.navigate("Login")}
+          onPress={() => navigation.navigate("LogIn")}
           buttonStyle={styles.buttonContainer}
           titleStyle={styles.buttonText}
           color="white"

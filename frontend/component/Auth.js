@@ -64,7 +64,7 @@ export default function Auth({ navigation }) {
         light
         type="google"
         style={styles.buttonContainer}
-        fontStyle={styles.buttonText}
+        fontStyle={styles.authText}
     ></SocialIcon>
     <SocialIcon
         title="Sign In With Apple"
@@ -73,16 +73,7 @@ export default function Auth({ navigation }) {
         light
         type="apple"
         style={styles.buttonContainer}
-        fontStyle={styles.buttonText}
-    ></SocialIcon>
-    <SocialIcon
-        title="Sign In With Apple"
-        color="#000"
-        button
-        light
-        type="facebook"
-        style={styles.buttonContainer}
-        fontStyle={styles.buttonText}
+        fontStyle={styles.authText}
     ></SocialIcon>
     </View>
   );

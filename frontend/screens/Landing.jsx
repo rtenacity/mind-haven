@@ -9,7 +9,6 @@ import {
 } from "@expo-google-fonts/kaisei-opti";
 import {Dimensions} from "react-native";
 
-const { width, height } = Dimensions.get('window');
 
 export default function LandingScreen({ navigation }) {
   let [fontsLoaded] = useFonts({

@@ -3,20 +3,9 @@ import * as React from 'react';
 import { ScrollView, SafeAreaView, View, Text, Dimensions, Image, Button } from 'react-native';
 import styles from '../styles';
 import  Header from '../component/Header';
+import { Icon } from "@rneui/themed";
 
 const { width, height } = Dimensions.get('window');
-
-const barData = [
-  { value: 50, label: "M" },
-  { value: 10, label: "T" },
-  { value: 40, label: "W" },
-  { value: 95, label: "T" },
-  { value: 85, label: "F" },
-  { value: 91, label: "S" },
-  { value: 35, label: "S" }
-];
-
-var num = 0;
 
 export default function DashboardScreen({navigation}) {
     return (
@@ -30,7 +19,39 @@ export default function DashboardScreen({navigation}) {
           </View>
           <Text style = {styles.dashboardTitle}>Recent Entries</Text>
           <View style = {styles.dashBox}>
-            
+            <View style = {styles.journalEntries}>
+              <View style = {styles.imageJournalEntry}>
+                <Icon name = "image-outline" type = "ionicon" size={0.12 * width}/>
+              </View>
+              <View style= {{marginLeft:0.03 * width}}>
+                <Text style = {styles.journalTitle}>{"(Untitled)"}</Text>
+                <Text style = {styles.journalDate}>Date</Text>
+              </View>
+            </View>
+            <View style = {styles.journalEntries}>
+              <View style = {styles.imageJournalEntry}>
+                <Icon name = "image-outline" type = "ionicon" size={0.12 * width}/>
+              </View>
+              <View style= {{marginLeft:0.03 * width}}>
+                <Text style = {styles.journalTitle}>{"(Untitled)"}</Text>
+                <Text style = {styles.journalDate}>Date</Text>
+              </View>
+            </View>
+            <View style = {styles.journalEntries}>
+              <View style = {styles.imageJournalEntry}>
+                <Icon name = "image-outline" type = "ionicon" size={0.12 * width}/>
+              </View>
+              <View style= {{marginLeft:0.03 * width}}>
+                <Text style = {styles.journalTitle}>{"(Untitled)"}</Text>
+                <Text style = {styles.journalDate}>Date</Text>
+              </View>
+            </View>
+            <View style = {styles.moreButton}>
+              <Icon name = "arrow-down-circle-outline" type = "ionicon" size={0.12 * width}/>
+              <Text style={styles.journalTitle}>
+                More
+              </Text>
+            </View>
           </View>
 
         </ScrollView>

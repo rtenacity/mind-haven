@@ -8,7 +8,7 @@ export default function Header({ navigation }) {
             <View style = {styles.leftSideDashboard}>
                 <View style = {styles.circle}/>
 
-                <Text style={styles.headerIconText}>Hello{'\n'}[Username]</Text>
+                <Text style={styles.headerIconText}>Hello,{'\n'}[Username]</Text>
             </View>
 
             <Image

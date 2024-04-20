@@ -130,17 +130,51 @@ const styles = StyleSheet.create({
     },
     dashBox: {
         width: 0.9 * width,
-        height: 0.4 * height,
+        height: 0.42 * height,
         backgroundColor: '#9DBDF3',
         borderRadius: 0.04 * width,
         marginHorizontal: 0.05 * width,
         marginBottom: 0.05 * width,
-        alignItems: 'center',
-        justifyContent: 'center',
         shadowColor: '#000',
         shadowOffset: { width: 1, height: 1 },
         shadowOpacity: 0.4,
         shadowRadius: 3,  
+    },
+    journalEntries: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginHorizontal: 0.04 * width,
+        marginTop: 0.04 * width,
+        position: 'relative'
+    },
+    imageJournalEntry: {
+        backgroundColor: '#AFCDFF',
+        width: 0.15 * width,
+        height: 0.15 * width,
+        borderRadius: 0.04 * width,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    journalTitle: {
+        fontFamily: "KaiseiOpti_700Bold",
+        color: "black",
+        fontSize: 0.05 * width,
+    },
+    journalDate: {
+        fontFamily: "KaiseiOpti_400Regular",
+        color: "black",
+        fontSize: 0.04 * width,
+    },
+    moreButton: {
+        backgroundColor: '#AFCDFF',
+        flexDirection: 'row',
+        width: 0.9 * width,
+        height: 0.125 * width,
+        borderRadius: 0.04 * width,
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'absolute',
+        bottom: 0
     },
   });
   

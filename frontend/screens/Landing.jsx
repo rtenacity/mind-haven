@@ -1,5 +1,5 @@
-import * as React from "react";
-import { View, Text, ActivityIndicator, Image } from "react-native";
+import React, { useEffect } from "react";
+import { View, Text, StatusBar, Image } from "react-native";
 import { Button } from "@rneui/themed";
 import styles from "../styles";
 import {

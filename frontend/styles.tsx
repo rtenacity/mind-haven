@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginHorizontal: 0.04 * width,
         marginTop: 0.04 * width,
-        position: 'relative'
+        position: 'relative',
     },
     imageJournalEntry: {
         backgroundColor: '#AFCDFF',
@@ -187,7 +187,13 @@ const styles = StyleSheet.create({
         fontSize: 0.06 * width,
         marginHorizontal: 0.05 * width,
         marginVertical: 0.03 * width,
-    }
+    },
+    newJournal: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 0.05 * width,
+        marginBottom: 0.15 * width,
+    } 
   });
   
 export default styles;

@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import { ScrollView, SafeAreaView, View, Text, Dimensions, Image, Button } from 'react-native';
+import { ScrollView, SafeAreaView, View, Text, Dimensions, TouchableOpacity } from 'react-native';
 import styles from '../styles';
 import  Header from '../component/Header';
 import { Icon } from "@rneui/themed";
@@ -22,7 +22,7 @@ export default function DashboardScreen({navigation}) {
           </View>
           <Text style = {styles.dashboardTitle}>Recent Entries</Text>
           <View style = {styles.dashBox}>
-            <View style = {styles.journalEntries}>
+            <TouchableOpacity style = {styles.journalEntries}>
               <View style = {styles.imageJournalEntry}>
                 <Icon name = "image-outline" type = "ionicon" size={0.12 * width}/>
               </View>
@@ -30,8 +30,8 @@ export default function DashboardScreen({navigation}) {
                 <Text style = {styles.journalTitle}>{"(Untitled)"}</Text>
                 <Text style = {styles.journalDate}>Date</Text>
               </View>
-            </View>
-            <View style = {styles.journalEntries}>
+            </TouchableOpacity>
+            <TouchableOpacity style = {styles.journalEntries} onPress = {() => navigation.navigate("Journal")}>
               <View style = {styles.imageJournalEntry}>
                 <Icon name = "image-outline" type = "ionicon" size={0.12 * width}/>
               </View>
@@ -39,8 +39,8 @@ export default function DashboardScreen({navigation}) {
                 <Text style = {styles.journalTitle}>{"(Untitled)"}</Text>
                 <Text style = {styles.journalDate}>Date</Text>
               </View>
-            </View>
-            <View style = {styles.journalEntries}>
+            </TouchableOpacity>
+            <TouchableOpacity style = {styles.journalEntries}>
               <View style = {styles.imageJournalEntry}>
                 <Icon name = "image-outline" type = "ionicon" size={0.12 * width}/>
               </View>
@@ -48,13 +48,16 @@ export default function DashboardScreen({navigation}) {
                 <Text style = {styles.journalTitle}>{"(Untitled)"}</Text>
                 <Text style = {styles.journalDate}>Date</Text>
               </View>
-            </View>
-            <View style = {styles.moreButton}>
+            </TouchableOpacity>
+            <TouchableOpacity style = {styles.moreButton}>
               <Icon name = "arrow-down-circle-outline" type = "ionicon" size={0.12 * width}/>
               <Text style={styles.journalTitle}>
                 More
               </Text>
-            </View>
+            </TouchableOpacity>
+          </View>
+          <Text style = {styles.dashboardTitle}>Mood Surverys</Text>
+          <View style = {styles.dashBox}>
           </View>
 
         </ScrollView>

@@ -1,4 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
+import MeditationBar from './component/MeditationBar';
 const { width, height } = Dimensions.get('window');
 
 
@@ -176,6 +177,17 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 0
     },
+    graphContainer: {
+        margin: 0.03 * width,
+        height: 0.3 * height,
+    },
+    meditationText: {
+        fontFamily: "KaiseiOpti_400Regular",
+        color: "#331B4B",
+        fontSize: 0.06 * width,
+        marginHorizontal: 0.05 * width,
+        marginVertical: 0.03 * width,
+    }
   });
   
 export default styles;

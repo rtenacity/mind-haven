@@ -4,6 +4,7 @@ import { ScrollView, SafeAreaView, View, Text, Dimensions, Image, Button } from 
 import styles from '../styles';
 import  Header from '../component/Header';
 import { Icon } from "@rneui/themed";
+import MeditationBar from '../component/MeditationBar';
 
 const { width, height } = Dimensions.get('window');
 
@@ -16,6 +17,8 @@ export default function DashboardScreen({navigation}) {
           <Header navigation={navigation}/>
           <Text style = {styles.dashboardTitle}>Meditation</Text>
           <View style = {styles.dashBox}>
+            <Text style = {styles.meditationText}>This Week</Text>
+            <MeditationBar />
           </View>
           <Text style = {styles.dashboardTitle}>Recent Entries</Text>
           <View style = {styles.dashBox}>

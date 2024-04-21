@@ -3,12 +3,13 @@ import {
     View, Text, Dimensions,
     Image, TextInput
 } from 'react-native';
-import styles from "../styles"
-import Auth from "../component/Auth"
+import styles from "../styles";
+import Auth from "../component/Auth";
+import { Button } from "@rneui/themed";
 
 const { width, height } = Dimensions.get('window');
 
-export default function LogIn ({}) {
+export default function LogIn ({ navigation }) {
     return (
         <View
             style = {styles.container}
@@ -46,6 +47,13 @@ export default function LogIn ({}) {
                     secureTextEntry={true}
                 >                
                 </TextInput>
+                <Button
+                title="Log In"
+                onPress={() => navigation.navigate("Dashboard")}
+                buttonStyle={styles.buttonContainer}
+                titleStyle={styles.buttonText}
+                color="#8A7DDC"
+                />
             </View>
             <View>
               <Text style = {styles.orText}>

@@ -20,6 +20,11 @@ export default function SignUpPageScreen({ navigation }) {
     return null;
   }
 
+  function onSubmit() {
+    navigation.navigate("SignUpOptions", { userName: value });
+    console.log(value)
+  }
+
   return (
     <View style={styles.container}>
       <View>
@@ -44,12 +49,12 @@ export default function SignUpPageScreen({ navigation }) {
             placeholder="Enter your Name"
             titleStyle={styles.inputText}
             color="#8A7DDC"
-            onSubmitEditing={() => navigation.navigate("SignUpOptions")}
+            onSubmitEditing={onSubmit}
           />
-          <Text style={styles.orText}>or</Text>
+          {/* <Text style={styles.orText}>or</Text> */}
           <Button
-            title="Prefer not say"
-            onPress={() => navigation.navigate("SignUpOptions")}
+            title="Next"
+            onPress={onSubmit}
             buttonStyle={styles.buttonContainer}
             titleStyle={styles.buttonText}
             color="#8A7DDC"

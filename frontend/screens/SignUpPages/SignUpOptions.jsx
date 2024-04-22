@@ -9,7 +9,8 @@ import {
 } from "@expo-google-fonts/kaisei-opti";
 import Auth from "../../component/Auth";
 
-export default function SignUpOptionsScreen({ navigation }) {
+export default function SignUpOptionsScreen({ navigation, route }) {
+  const userName = route.params?.userName;
   const [value, onChangeText] = React.useState("");
 
   let [fontsLoaded] = useFonts({
@@ -36,7 +37,7 @@ export default function SignUpOptionsScreen({ navigation }) {
         <View>
           <Button
             title="Sign Up with a Password"
-            onPress={() => navigation.navigate("PasswordSignUp")}
+            onPress={() => navigation.navigate("PasswordSignUp", { userName: userName })}
             buttonStyle={styles.buttonContainer}
             titleStyle={{fontFamily: "KaiseiOpti_400Regular", color: "black", fontSize: 23,}}
             color="#8A7DDC"

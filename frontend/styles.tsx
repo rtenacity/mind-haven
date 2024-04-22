@@ -100,7 +100,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'baseline',
         justifyContent: 'space-between',
+        alignContent: 'space-between',
         margin: 0.05 * width,
+        
     },
     headerIconImage: {
         width: 0.14* width,

@@ -28,6 +28,9 @@ export default function JournalScreen({navigation}) {
                 <Text style = {styles.dashboardTitle}>Recent Entries</Text>
                 <Icon name="search" size={0.12 * width} style={{textAlign: 'right'}}/>
             </View>
+            <View>
+                
+            </View>
         </SafeAreaView>
     );        
 }

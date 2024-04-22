@@ -5,10 +5,13 @@ import styles from '../styles';
 import  Header from '../component/Header';
 import { Icon } from "@rneui/themed";
 import MeditationBar from '../component/MeditationBar';
+// import { Button } from 'react-native-elements';
+
 
 const { width, height } = Dimensions.get('window');
 
 export default function DashboardScreen({navigation}) {
+  
     return (
       <SafeAreaView style = {styles.dashboardContainer}>
         <ScrollView
@@ -49,6 +52,7 @@ export default function DashboardScreen({navigation}) {
                 <Text style = {styles.journalDate}>Date</Text>
               </View>
             </TouchableOpacity>
+            
             <TouchableOpacity style = {styles.moreButton}>
               <Icon name = "arrow-down-circle-outline" type = "ionicon" size={0.12 * width}/>
               <Text style={styles.journalTitle}>

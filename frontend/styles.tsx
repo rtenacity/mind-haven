@@ -68,7 +68,8 @@ const styles = StyleSheet.create({
         borderRadius: 0.03 * height,
         padding: 0.05 * width,
         marginHorizontal: 0.02 * width,
-        fontSize: 0.05 * width
+        fontSize: 0.05 * width,
+        marginVertical: 0.02 * width,
     },
     inputText: { 
         height: 0.08 * height, 

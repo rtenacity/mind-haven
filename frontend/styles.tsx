@@ -195,7 +195,35 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginTop: 0.05 * width,
-        marginBottom: 0.15 * width,
+    },
+    journalBox: {
+        width: 0.9 * width,
+        height: 0.75 * height,
+        backgroundColor: '#9DBDF3',
+        borderRadius: 0.04 * width,
+        marginHorizontal: 0.05 * width,
+        marginBottom: 0.05 * width,
+        shadowColor: '#000',
+        shadowOffset: { width: 1, height: 1 },
+        shadowOpacity: 0.4,
+        shadowRadius: 3,  
+    },
+    headerJournal: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    titleTextbox: {
+        width: 0.6 * width,
+        height: 0.07 * height,
+        backgroundColor: '#9DBDF3',
+        margin: 0.05 * width,
+        borderRadius: 0.04 * width,
+        shadowColor: '#000',
+        padding: 0.03 * width,  
+        fontFamily: "KaiseiOpti_700Bold",
+        fontSize: 0.07 * width,
+        color: "black",
     } 
   });
   

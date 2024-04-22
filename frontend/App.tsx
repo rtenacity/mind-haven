@@ -8,11 +8,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SignUpPageScreen from './screens/SignUpPages/SignUpPage';
 import SignUpOptionsScreen from './screens/SignUpPages/SignUpOptions';
 import PasswordSignUpScreen from './screens/SignUpPages/PasswordSignUp';
-import JournalScreen from './screens/Journal';
 import { useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { FIREBASE_AUTH } from './FirebaseConfig';
 import { User } from 'firebase/auth';
+import JournalScreen from './screens/journalPages/Journal';
+import NewJournalScreen from './screens/journalPages/newJournal';
 
 
 const AppStack = createNativeStackNavigator();
@@ -29,6 +30,7 @@ function AppLayout() {
         {/* <AppStack.Screen name="PasswordSignUp" component={PasswordSignUpScreen} /> */}
         {/* <AppStack.Screen name="LogIn" component={LogIn} /> */}
         <AppStack.Screen name="Journal" component={JournalScreen} />
+        <AppStack.Screen name="NewJournal" component={NewJournalScreen} />
       </AppStack.Navigator>
   );
 }

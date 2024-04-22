@@ -15,6 +15,22 @@ const styles = StyleSheet.create({
         alignItems: "flex-start",
         backgroundColor: "#AEC5EB",
     },
+    circleText: {
+        // change font size
+        fontSize: 0.11 * width,
+        width: 0.14 * width,
+        height: 0.14 * width,
+        borderRadius: 0.07 * width,  // Simplified calculation for half of width
+        backgroundColor: '#D9D9D9',
+        marginRight: 0.02 * width,
+        color: '#331B4B',               // Changed text color to blue
+        // Removed paddingVertical and paddingHorizontal as we'll center using flex
+        overflow: 'hidden',
+        maxWidth: '100%',
+        justifyContent: 'center',    // Center content vertically (applies if Text is within a View)
+        alignItems: 'center',        // Center content horizontally (applies if Text is within a View)
+        textAlign: 'center',         // Ensure text is centered horizontally
+    },
     titleText:{ 
         fontFamily: "KaiseiOpti_700Bold",
         color: "#331B4B",

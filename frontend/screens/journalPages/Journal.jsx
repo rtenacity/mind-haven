@@ -3,13 +3,14 @@ import { View, Text, SafeAreaView, TouchableOpacity, Dimensions, ScrollView } fr
 import styles from '../../styles';
 import Header from '../../component/Header';
 import { Icon } from "@rneui/themed";
+import NavigationBar from '../../component/Navbar';
 const { width, height } = Dimensions.get('window');
 
 export default function JournalScreen({navigation}) {
     return(
         <SafeAreaView style={styles.dashboardContainer}>
             <ScrollView>
-                <Header />
+                <Header /> 
                 <View style = {styles.newJournal}>
                     <Text style = {styles.dashboardTitle}>New Journal</Text>
                     <TouchableOpacity onPress={() => navigation.navigate('NewJournal')}>
@@ -94,6 +95,7 @@ export default function JournalScreen({navigation}) {
                     
                 </View>
             </ScrollView>
+            <NavigationBar />
         </SafeAreaView>
     );        
 }

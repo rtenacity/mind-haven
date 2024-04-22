@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: "flex-start",
         backgroundColor: "#AEC5EB",
+        position: 'relative',
     },
     circleText: {
         // change font size
@@ -240,7 +241,14 @@ const styles = StyleSheet.create({
         fontFamily: "KaiseiOpti_700Bold",
         fontSize: 0.07 * width,
         color: "black",
-    } 
+    },
+    navbarContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingVertical: 0.02 * width,
+        paddingHorizontal: 0.05 * width,
+    },
   });
   
 export default styles;

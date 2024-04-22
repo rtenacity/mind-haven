@@ -5,6 +5,7 @@ import styles from '../styles';
 import  Header from '../component/Header';
 import { Icon } from "@rneui/themed";
 import MeditationBar from '../component/MeditationBar';
+import NavigationBar from '../component/Navbar';
 // import { Button } from 'react-native-elements';
 
 
@@ -71,6 +72,7 @@ export default function DashboardScreen({navigation}) {
           </View>
           
         </ScrollView>
+        <NavigationBar />
       </SafeAreaView>
     );
   }

@@ -59,7 +59,7 @@ export default function DashboardScreen({navigation}) {
           <Text style = {styles.dashboardTitle}>Mood Surverys</Text>
           <View style = {styles.dashBox}>
           </View>
-
+          
         </ScrollView>
       </SafeAreaView>
     );

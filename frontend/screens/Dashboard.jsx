@@ -63,6 +63,12 @@ export default function DashboardScreen({navigation}) {
           <Text style = {styles.dashboardTitle}>Mood Surverys</Text>
           <View style = {styles.dashBox}>
           </View>
+          <View>
+          <Text style = {styles.dashboardTitle}>Chatbot</Text>
+          <View style = {styles.dashBox}>
+            
+          </View>
+          </View>
           
         </ScrollView>
       </SafeAreaView>

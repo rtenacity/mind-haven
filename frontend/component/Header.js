@@ -49,12 +49,13 @@ export default function Header({ navigation }) {
     return (
         <View style={styles.headerDashboard}>
             <View style={styles.leftSideDashboard}>
-                <View style={styles.circle} />
+                <Text style={styles.circleText}>{displayName.charAt(0)}</Text>
                 <Text style={styles.headerIconText}>Hello, {displayName}</Text>
             </View>
             <Image
                 style={styles.headerIconImage}
                 source={require("../assets/logo.png")} />
         </View>
-    );
+    );    
+    
 }

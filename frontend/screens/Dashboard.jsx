@@ -55,24 +55,22 @@ export default function DashboardScreen({ navigation }) {
         </View>
         <Text style={styles.dashboardTitle}>Recent Entries</Text>
         <View style={styles.dashBox}>
-        {journals.slice(0).reverse().map(journal => (
-                    <TouchableOpacity key={journal.id} onPress={() => navigation.navigate('JournalDetail', { journalId: journal.id })} style={styles.journalEntries}>
-                        <View style = {styles.imageJournalEntry}>
-                            <Icon name="image-outline" type="ionicon" size={0.12 * width}/>
-                        </View>
-                        <View style={{ marginLeft:0.03 * width }}>
-                            <Text style = {styles.journalTitle}>{journal.title || "(Untitled)"}</Text>
-                            <Text style = {styles.journalDate}>{new Date(journal.date.toDate()).toLocaleDateString()}</Text>
-                        </View>
-                    </TouchableOpacity>
-                ))}
-            
-            <TouchableOpacity style = {styles.moreButton}>
-              <Icon name = "arrow-down-circle-outline" type = "ionicon" size={0.12 * width}/>
-              <Text style={styles.journalTitle}>
-                More
-              </Text>
+          {journals.slice(0).reverse().map(journal => (
+            <TouchableOpacity key={journal.id} onPress={() => navigation.navigate('JournalDetail', { journalId: journal.id })} style={styles.journalEntries}>
+              <View style={styles.imageJournalEntry}>
+                <Icon name="image-outline" type="ionicon" size={0.12 * width} />
+              </View>
+              <View style={{ marginLeft: 0.03 * width }}>
+                <Text style={styles.journalTitle}>{journal.title || "(Untitled)"}</Text>
+                <Text style={styles.journalDate}>{new Date(journal.date.toDate()).toLocaleDateString()}</Text>
+              </View>
             </TouchableOpacity>
+          ))}
+
+          <TouchableOpacity style={styles.moreButton} onPress={() => navigation.navigate('Journal')}>
+            <Icon name="arrow-down-circle-outline" type="ionicon" size={0.12 * width} />
+            <Text style={styles.journalTitle}>More</Text>
+          </TouchableOpacity>
         </View>
         <Text style={styles.dashboardTitle}>Mood Surverys</Text>
         <View style={styles.dashBox}>

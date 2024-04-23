@@ -249,7 +249,6 @@ const styles = StyleSheet.create({
     titleJournal: {
         width: 0.5 * width,
         height: 0.07 * height,
-        backgroundColor: '#9DBDF3',
         borderRadius: 0.04 * width,
         padding: 0.02 * width,  
         fontFamily: "KaiseiOpti_700Bold",

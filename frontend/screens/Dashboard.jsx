@@ -49,7 +49,7 @@ export default function DashboardScreen({ navigation }) {
         <Text style={styles.dashboardTitle}>Recent Entries</Text>
         <View style={styles.dashBox}>
           {journals.length > 0 ? (
-            journals.reverse().slice(0, 3).map(journal => (
+            journals.reverse().slice(0, 4).map(journal => (
               <TouchableOpacity key={journal.id} onPress={() => navigation.navigate('JournalDetail', { journalId: journal.id })} style={styles.journalEntries}>
                 <View style={styles.imageJournalEntry}>
                   <Icon name="image-outline" type="ionicon" size={0.12 * width} />

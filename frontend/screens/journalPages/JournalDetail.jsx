@@ -53,7 +53,7 @@ export default function JournalDetail({ route, navigation }) {
         <SafeAreaView style={{ backgroundColor: '#AEC5EB', flex: 1, flexGrow: 1 }}>
             <Header />
             <View style={styles.headerJournal}>
-                <Text style={styles.titleTextbox}>
+                <Text style={styles.titleJournal}>
                     {journal?.title || "(Untitled)"}
                 </Text>
                 <TouchableOpacity onPress={() => navigation.goBack()}><Icon name='exit-to-app' size={0.10 * width} /></TouchableOpacity>

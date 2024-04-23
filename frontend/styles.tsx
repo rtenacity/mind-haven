@@ -246,6 +246,16 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.4,
         shadowRadius: 3,
     },
+    titleJournal: {
+        width: 0.5 * width,
+        height: 0.07 * height,
+        backgroundColor: '#9DBDF3',
+        borderRadius: 0.04 * width,
+        padding: 0.02 * width,  
+        fontFamily: "KaiseiOpti_700Bold",
+        fontSize: 0.07 * width,
+        color: "black",
+    },
     navbarContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',

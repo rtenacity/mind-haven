@@ -87,7 +87,7 @@ export default function JournalScreen({navigation}) {
                     
                 </View>
             </ScrollView>
-            <NavigationBar />
+            <NavigationBar nav={navigation} />
         </SafeAreaView>
     );        
 }

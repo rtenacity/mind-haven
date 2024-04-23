@@ -72,7 +72,7 @@ export default function DashboardScreen({navigation}) {
           </View>
           
         </ScrollView>
-        <NavigationBar />
+        <NavigationBar nav={navigation} />
       </SafeAreaView>
     );
   }

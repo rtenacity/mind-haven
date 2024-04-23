@@ -13,6 +13,7 @@ import { FIREBASE_AUTH } from './FirebaseConfig';
 import { User } from 'firebase/auth';
 import JournalScreen from './screens/journalPages/Journal';
 import NewJournalScreen from './screens/journalPages/newJournal';
+import JournalDetail from './screens/journalPages/JournalDetail';
 
 
 const AppStack = createNativeStackNavigator();
@@ -30,6 +31,7 @@ function AppLayout() {
         {/* <AppStack.Screen name="LogIn" component={LogIn} /> */}
         <AppStack.Screen name="Journal" component={JournalScreen} />
         <AppStack.Screen name="NewJournal" component={NewJournalScreen} />
+        <AppStack.Screen name="JournalDetail" component={JournalDetail} />
       </AppStack.Navigator>
   );
 }

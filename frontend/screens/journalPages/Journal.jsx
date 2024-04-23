@@ -7,6 +7,7 @@ import { Icon } from "@rneui/themed";
 import NavigationBar from '../../component/Navbar';
 import { FIRESTORE, FIREBASE_AUTH } from '../../FirebaseConfig';
 import { collection, onSnapshot, query, where } from "firebase/firestore";
+import JournalDetail from './JournalDetail';
 
 
 const { width, height } = Dimensions.get('window');
@@ -65,7 +66,7 @@ export default function JournalScreen({navigation}) {
                 </View>
                 <View style={styles.journalEntries}></View>
                 <View style = {styles.journalBox}>
-                {journals.map(journal => (
+                {journals.slice(0).reverse().map(journal => (
                     <TouchableOpacity key={journal.id} onPress={() => navigation.navigate('JournalDetail', { journalId: journal.id })} style={styles.journalEntries}>
                         <View style = {styles.imageJournalEntry}>
                             <Icon name="image-outline" type="ionicon" size={0.12 * width}/>

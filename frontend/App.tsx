@@ -1,5 +1,4 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 import LandingScreen from './screens/Landing';
 import LogIn from './screens/LogIn';
 import DashboardScreen from './screens/Dashboard';
@@ -56,6 +55,7 @@ function App() {
   }, [])
   return (
     <NavigationContainer>
+      <StatusBar style="dark" />
       <Stack.Navigator screenOptions={{ headerShown: false }}>
       {user ? (
           <Stack.Screen name='InsideLayout' component={AppLayout} options={{ headerShown: false }} />

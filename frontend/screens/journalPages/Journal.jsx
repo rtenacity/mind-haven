@@ -86,6 +86,7 @@ export default function JournalScreen({navigation}) {
                     </TouchableOpacity>
                     
                 </View>
+                <View style={{marginBottom: height * 0.2}}/>
             </ScrollView>
             <NavigationBar nav={navigation} />
         </SafeAreaView>

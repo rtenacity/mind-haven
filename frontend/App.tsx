@@ -14,6 +14,7 @@ import { User } from 'firebase/auth';
 import JournalScreen from './screens/journalPages/Journal';
 import NewJournalScreen from './screens/journalPages/newJournal';
 import JournalDetail from './screens/journalPages/JournalDetail';
+import NavigationBar from './component/Navbar';
 
 
 const AppStack = createNativeStackNavigator();

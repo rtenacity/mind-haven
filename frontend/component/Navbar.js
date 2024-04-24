@@ -1,17 +1,19 @@
 import * as React from "react";
-import { View, Text, ActivityIndicator, Image, TextInput, Dimensions, TouchableOpacity } from "react-native";
-import { Button, SocialIcon } from "@rneui/themed";
+import { View, Dimensions, TouchableOpacity } from "react-native";
+import { useNavigationState } from "@react-navigation/native";
+import { Icon } from "@rneui/themed";
 import styles from "../styles";
 import {
   useFonts,
   KaiseiOpti_700Bold,
   KaiseiOpti_400Regular,
 } from "@expo-google-fonts/kaisei-opti";
-import { Icon } from "@rneui/base";
 
 const {height, width} = Dimensions.get('window');
 
+
 export default function NavigationBar(props) {
+    const routeName = useNavigationState(state => state.routes[state.index].name);
     return(
         <View style = {[styles.navbarContainer, {height: 0.2 * height, width: width, justifyContent: 'center', alignItems: 'center', backgroundColor: 'transparent',
         backgroundColor: 'transparent',
@@ -32,11 +34,13 @@ export default function NavigationBar(props) {
 
 
                 <View style={{height: 50, width:50}}/>
+
+
                 <TouchableOpacity onPress = {() => props.nav.navigate("Journal")}>
-                    <Icon name="book-lock-outline" type="material-community" size={50}></Icon>
+                    <Icon name="book" type="antdesign" size={50} color = {routeName == 'Journal' ? "#613289" : "#000000"}></Icon>
                 </TouchableOpacity>
                 <TouchableOpacity>
-                    <Icon name="sentiment-satisfied" size={50}></Icon>
+                    <Icon name="emoji-happy" type="entypo" size={50}></Icon>
                 </TouchableOpacity>
             </View>
             
@@ -56,7 +60,7 @@ export default function NavigationBar(props) {
                 }}
                 >
                     <TouchableOpacity  onPress={()=> props.nav.navigate("Dashboard")}>
-                        <Icon name="stats-chart-outline" type="ionicon" size={60} />
+                        <Icon name="stats-chart" type="ionicon" size={60} color = {routeName == 'Dashboard' ? "#613289" : "#000000"}/>
                     </TouchableOpacity>
                 </View>
         </View>

@@ -77,6 +77,7 @@ export default function DashboardScreen({ navigation }) {
           <View style={styles.dashBox}>
           </View>
         </View>
+        <View style={{marginBottom: height * 0.2}}/>
       </ScrollView>
       <NavigationBar nav={navigation} />
     </SafeAreaView>

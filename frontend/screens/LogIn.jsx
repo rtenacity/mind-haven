@@ -1,68 +1,84 @@
-import * as React from 'react';
-import {
-    View, Text, Dimensions,
-    Image, TextInput
-} from 'react-native';
-import styles from "../styles";
-import Auth from "../component/Auth";
+import * as React from "react";
+import { View, Text, Image, TextInput, ActivityIndicator } from "react-native";
 import { Button } from "@rneui/themed";
+import styles from "../styles";
+import { FIREBASE_AUTH } from '../FirebaseConfig';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useState } from "react";
 
-const { width, height } = Dimensions.get('window');
+export default function LogIn({ navigation }) {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
 
-export default function LogIn ({ navigation }) {
-    return (
-        <View
-            style = {styles.container}
-        >
-            <View
-            style={{
-                alignItems: "center",
+    const handleLogin = async () => {
+        setLoading(true); // Show loading indicator
+        setError(''); // Clear previous errors
+
+        // Check if both email and password are provided
+        if (!email || !password) {
+            setError("Please enter both email and password");
+            setLoading(false); // Hide loading indicator
+        } else {
+            try {
+                // Attempt to sign in with email and password
+                const userCredential = await signInWithEmailAndPassword(FIREBASE_AUTH, email, password);
                 
-            }}
-            >
+                // Check if user is successfully logged in
+                if (userCredential.user) {
+                    console.log('User logged in:', userCredential.user.email);
+                    // User login successful, proceed to dashboard
+                    navigation.navigate("Dashboard");
+                }
+            } catch (e) {
+                // Handle errors like wrong password, user not found, etc.
+                setError(e.message);
+                console.log(e);
+            } finally {
+                // Hide loading indicator after all operations are complete
+                setLoading(false);
+            }
+        }
+    };
+
+    return (
+        <View style={styles.container}>
+            <View>
                 <Image
                     source={require("../assets/logo.png")}
                     style={styles.normalLogo}
                 />
-                <Text
-                    style={styles.titleText}
-                >{"Welcome Back"}</Text>
+                <Text style={styles.titleText}>{"Welcome Back"}</Text>
             </View>
             <View>
-                <Text
-                    style={styles.fieldText}
-                >{"Username"}</Text>
-                
                 <TextInput
-                    style = {styles.inputContainer}
-                    placeholder='Enter Username'
-                >                
-                </TextInput>
-                <Text
-                    style={styles.fieldText}
-                >{"Password"}</Text>
+                    autoCapitalize="none"
+                    onChangeText={setEmail}
+                    style={styles.inputContainer}
+                    value={email}
+                    placeholder="Email"
+                    keyboardType="email-address"
+                    color="#8A7DDC"
+                />
                 <TextInput
-                    style = {styles.inputContainer}
-                    placeholder='Enter Password'
+                    autoCapitalize="none"
+                    onChangeText={setPassword}
+                    style={styles.inputContainer}
+                    value={password}
+                    placeholder="Password"
                     secureTextEntry={true}
-                >                
-                </TextInput>
+                    color="#8A7DDC"
+                />
+                {error && <Text style={styles.subtitleText}>{error}</Text>}
                 <Button
-                title="Log In"
-                onPress={() => navigation.navigate("Dashboard")}
-                buttonStyle={styles.buttonContainer}
-                titleStyle={styles.buttonText}
-                color="#8A7DDC"
+                    title="Log In"
+                    onPress={handleLogin}
+                    buttonStyle={styles.buttonContainer}
+                    titleStyle={styles.buttonText}
+                    color="#8A7DDC"
                 />
             </View>
-            <View>
-              <Text style = {styles.orText}>
-                Or
-              </Text>
-            </View>
-            <View>
-              <Auth/>
-            </View>
         </View>
-    )
+    );
 }

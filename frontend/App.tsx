@@ -15,6 +15,7 @@ import JournalScreen from './screens/journalPages/Journal';
 import NewJournalScreen from './screens/journalPages/newJournal';
 import JournalDetail from './screens/journalPages/JournalDetail';
 import ChatBoxScreen from './screens/ChatBot';
+import NavigationBar from './component/Navbar';
 
 
 const AppStack = createNativeStackNavigator();

@@ -87,8 +87,8 @@ export default function PasswordSignUpScreen({ navigation, route }) {
           style={styles.normalLogo}
         />
         <View>
-          <Text style={styles.titleText}>The Mental Haven</Text>
-          <Text style={styles.subtitleText}>
+          <Text style={styles.titleText}>The Mind Haven</Text>
+          <Text style={styles.inputTextAbove}>
             Sign Up
           </Text>
         </View>

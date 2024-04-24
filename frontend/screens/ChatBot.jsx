@@ -7,9 +7,10 @@ import { Icon } from "@rneui/themed";
 import NavigationBar from '../component/Navbar';
 import axios from 'axios'; // Import Axios for making HTTP requests
 import OpenAI from 'openai';
+import { OPENAI_API_KEY } from '@env'
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY, 
+  apiKey: OPENAI_API_KEY
 });
 
 const { width, height } = Dimensions.get('window');

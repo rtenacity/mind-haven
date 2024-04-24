@@ -1,90 +1,103 @@
-import React, { useState, useEffect } from 'react';
-
-import { View, Text, SafeAreaView, TouchableOpacity, Dimensions, ScrollView, TextInput, Button } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { View, Text, SafeAreaView, TouchableOpacity, Dimensions, ScrollView, TextInput, Button, ActivityIndicator, StyleSheet } from 'react-native';
 import styles from '../styles';
 import Header from '../component/Header';
 import { Icon } from "@rneui/themed";
 import NavigationBar from '../component/Navbar';
-import axios from 'axios'; // Import Axios for making HTTP requests
-import OpenAI from 'openai';
 import { OPENAI_API_KEY } from '@env'
+import OpenAI from 'openai';
 
 const openai = new OpenAI({
   apiKey: OPENAI_API_KEY
 });
 
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 export default function ChatBoxScreen({navigation}) {
-    const [journals, setJournals] = useState([]);
     const [inputText, setInputText] = useState('');
-    const [chatHistory, setChatHistory] = useState([{
-        "role": "system",
-        "content": "Yo, dont let anyone die"
-      },]);
+    const [chatHistory, setChatHistory] = useState([{ role: "system", content: "Hello there! How can I assist you today?" }]);
+    const [isLoading, setIsLoading] = useState(false);
+    const scrollViewRef = useRef();
 
     const sendMessage = async () => {
-        setChatHistory([...chatHistory, { "role" : "user", "content": inputText}]);
-        // console.log(chatHistory);
+        if (!inputText.trim()) return;
+        const newUserMessage = { role: "user", content: inputText.trim() };
+        setChatHistory([...chatHistory, newUserMessage]);
+        setInputText('');
+        setIsLoading(true);
+
         try {
             const response = await openai.chat.completions.create({
                 model: "gpt-3.5-turbo",
-                messages: chatHistory,
-                temperature: 0.8,
-                max_tokens: 64,
+                messages: chatHistory.concat(newUserMessage),
+                temperature: 0.7,
+                max_tokens: 150,
                 top_p: 1,
-              });
-            console.log(response, response.choices[0].message.content)
-            const botResponse = response.choices[0].message.content
-            setChatHistory([...chatHistory, { "role": "system", "content": botResponse }]);
-            setInputText('');
+            });
+            const botResponse = { role: "system", content: response.choices[0].message.content };
+            setChatHistory(currentHistory => [...currentHistory, botResponse]);
         } catch (error) {
+            setChatHistory(currentHistory => [...currentHistory, { role: "system", content: "Oops, something went wrong. Please try again!" }]);
             console.error('Error:', error);
         }
+        setIsLoading(false);
     };
 
-  
-    return(
+    return (
         <SafeAreaView style={styles.dashboardContainer}>
             <ScrollView>
                 <Header />
-                <View style = {styles.newJournal}>
-                    <Text style = {styles.dashboardTitle}>New Journal</Text>
-                    <TouchableOpacity onPress={() => navigation.navigate('NewJournal')}>
-                        <View style={{
-                            width: 0.14 * width,
-                            height: 0.14 * width, 
-                            borderRadius: 0.14 * width/2,
-                            backgroundColor: "#8A7DDC",
-                            justifyContent: "center",
-                            alignItems: "center",
-                        }}>
-                            <Icon name="add" size={0.12 * width}/> 
-                        </View>
-                    </TouchableOpacity>
-                </View>
                 {/* Chat Interface */}
                 <View style={styles.chatContainer}>
-                    <ScrollView>
+                    <ScrollView 
+                        ref={scrollViewRef}
+                        onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}
+                    >
                         {chatHistory.map((chat, index) => (
-                            <View key={index}>
-                                <Text style={styles.journalTitle}>Role: {chat.role}</Text>
-                                <Text style={styles.journalTitle}>content: {chat.content}</Text>
+                            <View key={index} style={[styles.message, chat.role === "system" ? styles.systemMessage : styles.userMessage]}>
+                                <Text style={styles.messageText}>{chat.content}</Text>
                             </View>
                         ))}
                     </ScrollView>
                     <TextInput
-                        style={{ height: 40, borderColor: 'gray', borderWidth: 1, margin: 10 }}
-                        onChangeText={text => setInputText(text)}
+                        style={styles.input}
+                        onChangeText={setInputText}
                         value={inputText}
+                        placeholder="Type your message here..."
+                        onSubmitEditing={sendMessage}
                     />
-                    <Button title="Send" onPress={sendMessage} />
+                    {isLoading && <ActivityIndicator size="small" color="#0000ff" />}
+                    <Button title="Send" onPress={sendMessage} disabled={isLoading} />
                 </View>
                 {/* End of Chat Interface */}
-                
             </ScrollView>
             <NavigationBar nav={navigation} />
         </SafeAreaView>
-    )
-
+    );
 }
+
+// Additional styles
+const newStyles = StyleSheet.create({
+  input: {
+    height: 50,
+    borderColor: 'gray',
+    borderWidth: 1,
+    paddingHorizontal: 10,
+  },
+  message: {
+    padding: 10,
+    borderRadius: 10,
+    marginVertical: 5,
+  },
+  userMessage: {
+    alignSelf: 'flex-end',
+    backgroundColor: '#DCF8C6',
+  },
+  systemMessage: {
+    alignSelf: 'flex-start',
+    backgroundColor: '#ECECEC',
+  },
+  messageText: {
+    fontSize: 16,
+  },
+});

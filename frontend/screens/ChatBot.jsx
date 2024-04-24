@@ -6,12 +6,14 @@ import { Icon } from "@rneui/themed";
 import NavigationBar from '../component/Navbar';
 import { OPENAI_API_KEY } from '@env'
 import OpenAI from 'openai';
+import { Card } from 'react-native-elements';
+
 
 const openai = new OpenAI({
   apiKey: OPENAI_API_KEY
 });
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 export default function ChatBoxScreen({navigation}) {
     const [inputText, setInputText] = useState('');
@@ -54,13 +56,15 @@ export default function ChatBoxScreen({navigation}) {
                         onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}
                     >
                         {chatHistory.map((chat, index) => (
-                            <View key={index} style={[styles.message, chat.role === "system" ? styles.systemMessage : styles.userMessage]}>
-                                <Text style={styles.messageText}>{chat.content}</Text>
+                            <View key={index} style = {newStyles.messageContainer}>
+                            <Card style={[newStyles.message, chat.role === "user" ? newStyles.userMessage : newStyles.systemMessage]}>
+                                <Text style={styles.normalText}>{chat.content}</Text>
+                            </Card>
                             </View>
                         ))}
                     </ScrollView>
                     <TextInput
-                        style={styles.input}
+                        style={newStyles.inputContainer}
                         onChangeText={setInputText}
                         value={inputText}
                         placeholder="Type your message here..."
@@ -85,19 +89,47 @@ const newStyles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   message: {
-    padding: 10,
-    borderRadius: 10,
-    marginVertical: 5,
+    backgroundColor: '#AFCDFF',
+    flexDirection: 'row',
+    width: 0.5 * width,
+    height: 0.125 * width,
+    borderRadius: 0.04 * width,
+    marginVertical: 0.01 * width,
+    padding: 0.02 * width,
+    marginHorizontal: 0.02 * width,
   },
   userMessage: {
     alignSelf: 'flex-end',
     backgroundColor: '#DCF8C6',
+    marginBottom: 0.01 * width,
+
   },
   systemMessage: {
     alignSelf: 'flex-start',
     backgroundColor: '#ECECEC',
+    marginBottom: 0.01 * width,
   },
   messageText: {
     fontSize: 16,
   },
+  messageContainer: {
+    flexDirection: 'row',
+    paddingHorizontal: 0.02 * width,
+    paddingVertical: 0.02 * width,
+  },
+    inputContainer: {
+        backgroundColor: "white",
+        width: 0.85 * width,
+        height: 0.08 * height,
+        borderRadius: 0.03 * height,
+        padding: 0.05 * width,
+        marginHorizontal: 0.02 * width,
+        fontSize: 0.05 * width,
+        marginVertical: 0.02 * width,
+        shadowColor: '#000',
+        shadowOffset: { width: 1, height: 1 },
+        shadowOpacity: 0.4,
+        shadowRadius: 3,
+        justifyContent: 'center',
+    },
 });

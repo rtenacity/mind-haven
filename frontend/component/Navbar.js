@@ -25,7 +25,7 @@ export default function NavigationBar(props) {
                 </TouchableOpacity>
                 
 
-                <TouchableOpacity>
+                <TouchableOpacity onPress = {() => props.nav.navigate("ChatBot")}>
                     <Icon name="forum" size={50}></Icon>
                 </TouchableOpacity>
                 

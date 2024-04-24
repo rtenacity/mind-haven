@@ -14,6 +14,7 @@ import { User } from 'firebase/auth';
 import JournalScreen from './screens/journalPages/Journal';
 import NewJournalScreen from './screens/journalPages/newJournal';
 import JournalDetail from './screens/journalPages/JournalDetail';
+import ChatBoxScreen from './screens/ChatBot';
 
 
 const AppStack = createNativeStackNavigator();
@@ -32,6 +33,7 @@ function AppLayout() {
         <AppStack.Screen name="Journal" component={JournalScreen} />
         <AppStack.Screen name="NewJournal" component={NewJournalScreen} />
         <AppStack.Screen name="JournalDetail" component={JournalDetail} />
+        <AppStack.Screen name="ChatBot" component={ChatBoxScreen} />
       </AppStack.Navigator>
   );
 }

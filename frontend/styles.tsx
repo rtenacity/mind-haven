@@ -290,7 +290,39 @@ const styles = StyleSheet.create({
         width: 125,
         height: 60,
         borderRadius: 20
+    },
+    meditationButtonViewSetup: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginHorizontal: 40,
+        marginVertical: 10
+    },
+    meditationButtonText: {
+        color: '#331B4B',
+        fontSize: 25,
+        fontFamily: "KaiseiOpti_400Regular",
+    },
+    realMeditationScreenContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1
+    },
+    meditationScreenImage: {
+        margin: 20,
+        height: 300,
+        width: 300,
+        borderRadius: 60,
+        shadowColor: '#000',
+        shadowOffset: { width: 3, height: 3 },
+        shadowOpacity: 0.4,
+        shadowRadius: 10, 
+    },
+    timerText: {
+        fontFamily: "KaiseiOpti_700Bold",
+        color: "#331B4B",
+        fontSize: 0.04 * width,
     }
-  });
+});
   
 export default styles;

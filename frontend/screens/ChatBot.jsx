@@ -86,18 +86,24 @@ export default function ChatBoxScreen({ navigation }) {
 
 // Updated styles
 const newStyles = StyleSheet.create({
-  chatContainer:
-  {
-    height: '73 %',
-    
+  chatContainer: {
+    height: '73%',
+    // Add shadow to the container's border
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
   },
   chatHistoryScroll: {
     borderRadius: 15,
     borderWidth: 2,
-    color: "#331B4B",
+    borderColor: "#331B4B",
     marginHorizontal: 10,
-    
-    
+    // Add shadow to the scroll area
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
   },
   message: {
     backgroundColor: '#AFCDFF',
@@ -107,10 +113,15 @@ const newStyles = StyleSheet.create({
     marginVertical: 0.01 * width,
     padding: 5,
     marginHorizontal: 0.01 * width,
+    // Add shadow to each message
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
   },
   userMessage: {
     alignSelf: 'flex-end',
-    backgroundColor: '#DCF8C6',
+    backgroundColor: '#8A7DDC',
     borderRadius: 10,
   },
   systemMessage: {
@@ -119,7 +130,7 @@ const newStyles = StyleSheet.create({
     borderRadius: 10,
   },
   messageContainer: {
-    flexDirection: 'row',
+    flexDirection: 'row',  // This supports horizontal alignment.
     paddingHorizontal: 0.02 * width,
     paddingVertical: 0.02 * width,
   },
@@ -138,6 +149,11 @@ const newStyles = StyleSheet.create({
     backgroundColor: '#fff',
     marginRight: 10,
     fontFamily: "KaiseiOpti_400Regular",
+    // Add shadow to the input field
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
   },
   sendButton: {
     width: 70,
@@ -146,6 +162,11 @@ const newStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
+    // Add shadow to the send button
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
   },
   buttonText: {
     color: 'white',
@@ -153,3 +174,4 @@ const newStyles = StyleSheet.create({
     fontFamily: "KaiseiOpti_400Regular",
   },
 });
+

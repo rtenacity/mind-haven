@@ -28,7 +28,7 @@ export default function NavigationBar(props) {
                 
 
                 <TouchableOpacity onPress = {() => props.nav.navigate("ChatBot")}>
-                    <Icon name="forum" size={50}></Icon>
+                    <Icon name="forum" size={50} color = {routeName == 'ChatBot' ? "#613289" : "#000000"}></Icon>
                 </TouchableOpacity>
                 
 

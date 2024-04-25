@@ -28,7 +28,7 @@ export default function LandingScreen({ navigation }) {
       <View style={{}}>
         <Text style={styles.titleText}>{"The Mind \nHaven"}</Text>
         <Text style={styles.subtitleText}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing
+          The mind comes first.
         </Text>
       </View>
       <View>

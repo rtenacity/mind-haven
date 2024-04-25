@@ -22,8 +22,8 @@ export default function NavigationBar(props) {
         bottom:0
         }]}>
             <View style = {[styles.navbarContainer, {height: 0.1 * height, width: width, position: 'absolute', bottom: 0, backgroundColor: '#8EABDA'}]}>
-                <TouchableOpacity>
-                    <Icon name="self-improvement" size={50}></Icon>
+                <TouchableOpacity onPress = {() => props.nav.navigate("MeditationSetup")}>
+                    <Icon name="self-improvement" size={50} color = {routeName == 'MeditationSetup' ? "#613289" : "#000000"}></Icon>
                 </TouchableOpacity>
                 
 

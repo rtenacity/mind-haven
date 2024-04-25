@@ -281,6 +281,16 @@ const styles = StyleSheet.create({
         paddingVertical: 0.02 * width,
         paddingHorizontal: 0.05 * width,
     },
+    titleMeditation: {
+        fontFamily: "KaiseiOpti_700Bold",
+        color: "#331B4B",
+        fontSize: 0.08 * width,
+    },
+    meditationButtonSetup: {
+        width: 125,
+        height: 60,
+        borderRadius: 20
+    }
   });
   
 export default styles;

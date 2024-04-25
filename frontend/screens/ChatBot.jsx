@@ -5,6 +5,8 @@ import Header from '../component/Header';
 import NavigationBar from '../component/Navbar';
 import { OPENAI_API_KEY } from '@env';
 import OpenAI from 'openai';
+import Ionicons from '@expo/vector-icons/Ionicons';
+
 
 const openai = new OpenAI({
   apiKey: OPENAI_API_KEY
@@ -44,24 +46,21 @@ export default function ChatBoxScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.dashboardContainer}>
-        <ScrollView style={{ flex: 1 }}>
-            <Header />
-            <View style={styles.chatContainer}>
-                <ScrollView 
-                    ref={scrollViewRef}
-                    onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}
-                >
-                    {chatHistory.map((chat, index) => (
-                        <View key={index} style={newStyles.messageContainer}>
-                        <View style={[newStyles.message, chat.role === "user" ? newStyles.userMessage : newStyles.systemMessage]}>
-                            <Text style={styles.normalText}>{chat.content}</Text>
-                        </View>
-                        </View>
-                    ))}
-                </ScrollView>
+      <Header />
+      <View style={newStyles.chatContainer}>
+        <ScrollView 
+          style={newStyles.chatHistoryScroll}
+          ref={scrollViewRef}
+          onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}
+        >
+          {chatHistory.map((chat, index) => (
+            <View key={index} style={newStyles.messageContainer}>
+              <View style={[newStyles.message, chat.role === "user" ? newStyles.userMessage : newStyles.systemMessage]}>
+                <Text style={styles.normalText}>{chat.content}</Text>
+              </View>
             </View>
+          ))}
         </ScrollView>
-
         <View style={newStyles.inputWrapper}>
           <TextInput
             style={newStyles.inputContainer}
@@ -75,25 +74,39 @@ export default function ChatBoxScreen({ navigation }) {
             onPress={sendMessage}
             disabled={isLoading || !inputText.trim()}
           >
-            <Text style={newStyles.buttonText}>Send</Text>
+            <Ionicons name="send" size={32} color="black" />
           </TouchableOpacity>
           {isLoading && <ActivityIndicator size="small" color="#0000ff" />}
         </View>
-        <NavigationBar nav={navigation} />
+      </View>
+      <NavigationBar nav={navigation} />
     </SafeAreaView>
   );
 }
 
-// Additional styles
+// Updated styles
 const newStyles = StyleSheet.create({
+  chatContainer:
+  {
+    height: '73 %',
+    
+  },
+  chatHistoryScroll: {
+    borderRadius: 15,
+    borderWidth: 2,
+    color: "#331B4B",
+    marginHorizontal: 10,
+    
+    
+  },
   message: {
     backgroundColor: '#AFCDFF',
     flexDirection: 'row',
     maxWidth: '80%',
     borderRadius: 10,
     marginVertical: 0.01 * width,
-    padding: 10,
-    marginHorizontal: 0.02 * width,
+    padding: 5,
+    marginHorizontal: 0.01 * width,
   },
   userMessage: {
     alignSelf: 'flex-end',
@@ -111,9 +124,6 @@ const newStyles = StyleSheet.create({
     paddingVertical: 0.02 * width,
   },
   inputWrapper: {
-    position: 'absolute',
-    bottom: 150,
-    width: '100%',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -128,12 +138,11 @@ const newStyles = StyleSheet.create({
     backgroundColor: '#fff',
     marginRight: 10,
     fontFamily: "KaiseiOpti_400Regular",
-    fontSize: 0.04 * width,  
   },
   sendButton: {
-    width: 50,
+    width: 70,
     height: 50,
-    backgroundColor: '#007BFF',
+    backgroundColor: "#8A7DDC",
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
@@ -142,7 +151,5 @@ const newStyles = StyleSheet.create({
     color: 'white',
     fontSize: 18,
     fontFamily: "KaiseiOpti_400Regular",
-    fontSize: 0.04 * width,  
-    // marginHorizontal: 0.06 * width,
   },
 });

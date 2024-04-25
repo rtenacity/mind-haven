@@ -13,10 +13,12 @@ import { FIREBASE_AUTH } from './FirebaseConfig';
 import { User } from 'firebase/auth';
 import JournalScreen from './screens/journalPages/Journal';
 import NewJournalScreen from './screens/journalPages/newJournal';
+import MoodSurveyScreen from './screens/surveyPages/newSurvey';
 import JournalDetail from './screens/journalPages/JournalDetail';
 import ChatBoxScreen from './screens/ChatBot';
 import MeditationSetup from './screens/Meditation';
-import MeditationScreen from './screens/MeditationScreen'; 
+import MeditationScreen from './screens/MeditationScreen';
+import SurveyScreen from './screens/surveyPages/MoodSurvey';
 
 const AppStack = createNativeStackNavigator();
 const Stack = createNativeStackNavigator();
@@ -24,25 +26,27 @@ const AuthStack = createNativeStackNavigator();
 
 function AppLayout() {
   return (
-      <AppStack.Navigator  screenOptions={{ headerShown: false }}>
-        {/* <AppStack.Screen name="Landing" component={LandingScreen} /> */}
-        <AppStack.Screen name="Dashboard" component={DashboardScreen} />
-        {/* <AppStack.Screen name="SignUp" component={SignUpPageScreen} /> */}
-        {/* <AppStack.Screen name="SignUpOptions" component={SignUpOptionsScreen} /> */}
-        {/* <AppStack.Screen name="PasswordSignUp" component={PasswordSignUpScreen} /> */}
-        {/* <AppStack.Screen name="LogIn" component={LogIn} /> */}
-        <AppStack.Screen name="Journal" component={JournalScreen} />
-        <AppStack.Screen name="NewJournal" component={NewJournalScreen} />
-        <AppStack.Screen name="JournalDetail" component={JournalDetail} />
-        <AppStack.Screen name="MeditationSetup" component={MeditationSetup} />
-        <AppStack.Screen name="ChatBot" component={ChatBoxScreen} />
-        <AppStack.Screen name="MeditationScreen" component={MeditationScreen} />
-      </AppStack.Navigator>
+    <AppStack.Navigator screenOptions={{ headerShown: false }}>
+      {/* <AppStack.Screen name="Landing" component={LandingScreen} /> */}
+      <AppStack.Screen name="Dashboard" component={DashboardScreen} />
+      {/* <AppStack.Screen name="SignUp" component={SignUpPageScreen} /> */}
+      {/* <AppStack.Screen name="SignUpOptions" component={SignUpOptionsScreen} /> */}
+      {/* <AppStack.Screen name="PasswordSignUp" component={PasswordSignUpScreen} /> */}
+      {/* <AppStack.Screen name="LogIn" component={LogIn} /> */}
+      <AppStack.Screen name="Journal" component={JournalScreen} />
+      <AppStack.Screen name="NewJournal" component={NewJournalScreen} />
+      <AppStack.Screen name="JournalDetail" component={JournalDetail} />
+      <AppStack.Screen name="MeditationSetup" component={MeditationSetup} />
+      <AppStack.Screen name="ChatBot" component={ChatBoxScreen} />
+      <AppStack.Screen name="MeditationScreen" component={MeditationScreen} />
+      <AppStack.Screen name="Survey" component={SurveyScreen} />
+      <AppStack.Screen name="NewSurvey" component={MoodSurveyScreen} />
+    </AppStack.Navigator>
   );
 }
 
 function AuthLayout() {
-  return(<AuthStack.Navigator screenOptions={{ headerShown: false }}>
+  return (<AuthStack.Navigator screenOptions={{ headerShown: false }}>
     <AuthStack.Screen name="Landing" component={LandingScreen} />
     <AuthStack.Screen name="LogIn" component={LogIn} />
     <AuthStack.Screen name="SignUp" component={SignUpPageScreen} />
@@ -58,15 +62,15 @@ function App() {
       console.log(user)
       setUser(user)
     }
-      )
+    )
   }, [])
   return (
     <NavigationContainer>
       <StatusBar style="dark" />
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-      {user ? (
+        {user ? (
           <Stack.Screen name='InsideLayout' component={AppLayout} options={{ headerShown: false }} />
-        ) : <Stack.Screen name = 'Auth' component={AuthLayout} options = {{headerShown: false}}>
+        ) : <Stack.Screen name='Auth' component={AuthLayout} options={{ headerShown: false }}>
 
         </Stack.Screen>}
       </Stack.Navigator>

@@ -39,7 +39,7 @@ export default function NavigationBar(props) {
                 <TouchableOpacity onPress = {() => props.nav.navigate("Journal")}>
                     <Icon name="book" type="antdesign" size={50} color = {routeName == 'Journal' ? "#613289" : "#000000"}></Icon>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress = {() => props.nav.navigate("Survey")}>
                     <Icon name="emoji-happy" type="entypo" size={50}></Icon>
                 </TouchableOpacity>
             </View>

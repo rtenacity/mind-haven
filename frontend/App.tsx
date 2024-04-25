@@ -15,8 +15,8 @@ import JournalScreen from './screens/journalPages/Journal';
 import NewJournalScreen from './screens/journalPages/newJournal';
 import JournalDetail from './screens/journalPages/JournalDetail';
 import ChatBoxScreen from './screens/ChatBot';
-import NavigationBar from './component/Navbar';
-
+import MeditationSetup from './screens/Meditation';
+import MeditationScreen from './screens/MeditationScreen'; 
 
 const AppStack = createNativeStackNavigator();
 const Stack = createNativeStackNavigator();
@@ -34,7 +34,9 @@ function AppLayout() {
         <AppStack.Screen name="Journal" component={JournalScreen} />
         <AppStack.Screen name="NewJournal" component={NewJournalScreen} />
         <AppStack.Screen name="JournalDetail" component={JournalDetail} />
+        <AppStack.Screen name="MeditationSetup" component={MeditationSetup} />
         <AppStack.Screen name="ChatBot" component={ChatBoxScreen} />
+        <AppStack.Screen name="MeditationScreen" component={MeditationScreen} />
       </AppStack.Navigator>
   );
 }

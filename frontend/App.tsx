@@ -20,6 +20,7 @@ import MeditationSetup from './screens/MeditationSetup';
 import MeditationScreen from './screens/MeditationScreen';
 import SurveyScreen from './screens/surveyPages/MoodSurvey';
 import UserSettings from './screens/userSettings';
+import SurveyDetail from './screens/surveyPages/SurveyDetail';
 
 const AppStack = createNativeStackNavigator();
 const Stack = createNativeStackNavigator();
@@ -43,6 +44,7 @@ function AppLayout() {
       <AppStack.Screen name="Survey" component={SurveyScreen} />
       <AppStack.Screen name="NewSurvey" component={MoodSurveyScreen} />
       <AppStack.Screen name="UserSettings" component={UserSettings} />
+      <AppStack.Screen name="SurveyDetail" component={SurveyDetail} />
     </AppStack.Navigator>
   );
 }

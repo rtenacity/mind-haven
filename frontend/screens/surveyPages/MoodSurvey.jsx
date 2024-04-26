@@ -66,7 +66,7 @@ export default function SurveyScreen({navigation}) {
                 <View style={styles.journalEntries}></View>
                 <View style = {styles.journalBox}>
                 {journals.slice(0).reverse().map(journal => (
-                    <TouchableOpacity key={journal.id} onPress={() => navigation.navigate('JournalDetail', { journalId: journal.id })} style={styles.journalEntries}>
+                    <TouchableOpacity key={journal.id} onPress={() => navigation.navigate('SurveyDetail', { surveyId: journal.id })} style={styles.journalEntries}>
                         <View style = {styles.imageJournalEntry}>
                             <Icon name="image-outline" type="ionicon" size={0.12 * width}/>
                         </View>

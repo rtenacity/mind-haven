@@ -72,7 +72,7 @@ export default function SurveyDetail({ route, navigation }) {
      <View style={{padding:2}}></View>
       </View>
       <View style={styles.chatHistoryScroll}>
-        <Text style={newStyles.fieldText}>Your mood can change how you act. On {new Date(survey.date.toDate()).toLocaleDateString()}, your mood was at:</Text>
+        <Text style={newStyles.fieldText}>Your mood can change how you act. On On {survey ? new Date(survey.date.toDate()).toLocaleDateString(): "(None)"}, your mood was at:</Text>
         <View style={{padding:2}}></View>
         <Slider
           style={{ width: 0.8 * width, alignSelf: "center"}}
@@ -96,8 +96,8 @@ export default function SurveyDetail({ route, navigation }) {
             ),
           }}
         />
-        <View style={{padding:2}}></View>
-        <Text style={newStyles.fieldText}>Your energy can change your drive. On {new Date(survey.date.toDate()).toLocaleDateString()}, your energy was at:</Text>
+        <Text style={newStyles.centerFieldText}>{survey ? survey.mood : 0}/10</Text>
+        <Text style={newStyles.fieldText}>Your energy can change your drive. On {survey ? new Date(survey.date.toDate()).toLocaleDateString(): "(None)"}, your energy was at:</Text>
         <View style={{padding:2}}></View>
         <Slider
           style={{ width: 0.8 * width, alignSelf: "center"}}
@@ -121,8 +121,8 @@ export default function SurveyDetail({ route, navigation }) {
             ),
           }}
         />
-        <View style={{padding:2}}></View>
-        <Text style={newStyles.fieldText}>Stress can negatively impact your mental and physical health. On {new Date(survey.date.toDate()).toLocaleDateString()}, your stress was at:</Text>
+        <Text style={newStyles.centerFieldText}>{survey ? survey.energy : 0}/10</Text>
+        <Text style={newStyles.fieldText}>Stress can negatively impact your mental and physical health. On {survey ? new Date(survey.date.toDate()).toLocaleDateString(): "(None)"}, your stress was at:</Text>
         <View style={{padding:2}}></View>
         <Slider
           style={{ width: 0.8 * width, alignSelf: "center"}}
@@ -148,6 +148,7 @@ export default function SurveyDetail({ route, navigation }) {
           }}
         />
         <Text></Text>
+        <Text style={newStyles.centerFieldText}>{survey ? survey.stress : 0}/10</Text>
         <View style={{padding:10}}></View>
       </View>
       </ScrollView>
@@ -163,4 +164,12 @@ const newStyles = StyleSheet.create({
       margin: 0.02 * width,
       padding: 10
     },
+    centerFieldText: {
+        fontFamily: "KaiseiOpti_400Regular",
+        color: "#331B4B",
+        fontSize: 0.08 * width,
+        margin: 0.02 * width,
+        textAlign: 'center',
+        padding: 10
+      },
   });

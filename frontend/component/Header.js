@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { View, Text, ActivityIndicator, Image, TouchableOpacity } from "react-native";
 import styles from "../styles";
 import { onAuthStateChanged } from "firebase/auth";
@@ -14,7 +14,17 @@ export default function Header({ navigation }) {
         React.useCallback(() => {
             const unsubscribe = onAuthStateChanged(FIREBASE_AUTH, user => {
                 if (user) {
-                    setDisplayName(user.displayName || 'None');
+                    if (user.displayName) {
+                        setDisplayName(user.displayName);
+                    } else {
+                        setTimeout(() => {
+                            if (user.displayName) {
+                                setDisplayName(user.displayName);
+                            } else {
+                                setDisplayName('None');
+                            }
+                        }, 500);
+                    }
                 } else {
                     setDisplayName('');
                 }
@@ -50,4 +60,5 @@ export default function Header({ navigation }) {
             />
         </View>
     );    
+    
 }

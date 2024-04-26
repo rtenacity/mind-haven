@@ -28,7 +28,7 @@ export default function NavigationBar(props) {
                 
 
                 <TouchableOpacity onPress = {() => props.nav.navigate("ChatBot")}>
-                    <Icon name="forum" size={50} color = {routeName == 'ChatBot' ? "#613289" : "#000000"}></Icon>
+                    <Icon name="chatbubble-ellipses-outline" type="ionicon" size={50} color = {routeName == 'ChatBot' ? "#613289" : "#000000"}></Icon>
                 </TouchableOpacity>
                 
 
@@ -37,7 +37,7 @@ export default function NavigationBar(props) {
 
 
                 <TouchableOpacity onPress = {() => props.nav.navigate("Journal")}>
-                    <Icon name="book" type="antdesign" size={50} color = {routeName == 'Journal' ? "#613289" : "#000000"}></Icon>
+                    <Icon name="open-book" type="entypo" size={50} color = {routeName == 'Journal' ? "#613289" : "#000000"}></Icon>
                 </TouchableOpacity>
                 <TouchableOpacity onPress = {() => props.nav.navigate("Survey")}>
                     <Icon name="emoji-happy" type="entypo" size={50} color = {routeName == 'Survey' ? "#613289" : "#000000"}></Icon>

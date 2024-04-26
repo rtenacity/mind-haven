@@ -90,7 +90,7 @@ export default function MeditationBar() {
             points={points.minutes}
             chartBounds={chartBounds}
             color="#8A7DDC"
-            roundedCorners={{ topLeft: 5, topRight: 5, bottomLeft: 5, bottomRight: 5}}
+            roundedCorners={{ topLeft: 2, topRight: 2, bottomLeft: 2, bottomRight: 2}}
             innerPadding={0.3}
           />
         )}

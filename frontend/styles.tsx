@@ -238,7 +238,6 @@ const styles = StyleSheet.create({
     },
     journalBox: {
         width: 0.9 * width,
-        height: 0.75 * height,
         backgroundColor: '#9DBDF3',
         borderRadius: 0.04 * width,
         marginHorizontal: 0.05 * width,

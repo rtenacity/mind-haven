@@ -12,10 +12,22 @@ import JournalDetail from './JournalDetail';
 
 const { width, height } = Dimensions.get('window');
 
+const baseNormalHeight = 0.75 * height;
 
 export default function JournalScreen({navigation}) {
     const [journals, setJournals] = useState([]);
     const user = FIREBASE_AUTH.currentUser;
+    const [journalNum, setJournalNum] = useState(6);
+    const [ heightDisplay, setheightDisplay ] = useState(0.75 * height);
+
+    const handleIncreaseSize = () => {
+
+        if (journals.length - journalNum < 0) {
+            return;
+        }
+        setJournalNum(journalNum + 6);
+        setheightDisplay(heightDisplay + baseNormalHeight);
+    }
 
     useFocusEffect(
         React.useCallback(() => {
@@ -64,9 +76,9 @@ export default function JournalScreen({navigation}) {
                     <Text style = {styles.dashboardTitle}>Recent Entries</Text>
                 </View>
                 <View style={styles.journalEntries}></View>
-                <View style = {styles.journalBox}>
-                {journals.slice(0).reverse().map(journal => (
-                    <TouchableOpacity key={journal.id} onPress={() => navigation.navigate('JournalDetail', { journalId: journal.id })} style={styles.journalEntries}>
+                <View style = {[styles.journalBox, {height: heightDisplay}]}>
+                {journals.reverse().slice(0, journalNum).map(journal => (
+                    <TouchableOpacity key={journal.id} onPress={() => navigation.navigate('JournalDetail', { journalId: journal.id })} style={[styles.journalEntries]}>
                         <View style = {styles.imageJournalEntry}>
                             <Icon name="image-outline" type="ionicon" size={0.12 * width}/>
                         </View>
@@ -77,7 +89,7 @@ export default function JournalScreen({navigation}) {
                     </TouchableOpacity>
                 ))}
 
-                    <TouchableOpacity style = {styles.moreButton}>
+                    <TouchableOpacity style = {styles.moreButton} onPress={handleIncreaseSize}>
                         <Icon name = "arrow-down-circle-outline" type = "ionicon" size={0.12 * width}/>
                         <Text style={styles.journalTitle}>
                             More

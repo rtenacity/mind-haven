@@ -10,11 +10,22 @@ import { collection, onSnapshot, query, where } from "firebase/firestore";
 
 
 const { width, height } = Dimensions.get('window');
-
+const baseNormalHeight = 0.75 * height;
 
 export default function SurveyScreen({navigation}) {
     const [journals, setJournals] = useState([]);
     const user = FIREBASE_AUTH.currentUser;
+    const [journalNum, setJournalNum] = useState(6);
+    const [ heightDisplay, setheightDisplay ] = useState(0.75 * height);
+
+    const handleIncreaseSize = () => {
+
+        if (journals.length - journalNum < 0) {
+            return;
+        }
+        setJournalNum(journalNum + 6);
+        setheightDisplay(heightDisplay + baseNormalHeight);
+    }
 
     useFocusEffect(
         React.useCallback(() => {
@@ -64,8 +75,8 @@ export default function SurveyScreen({navigation}) {
                     <TouchableOpacity><Icon name="search" size={0.12 * width} style={{textAlign: 'right'}}/></TouchableOpacity>
                 </View>
                 <View style={styles.journalEntries}></View>
-                <View style = {styles.journalBox}>
-                {journals.slice(0).reverse().map(journal => (
+                <View style = {[styles.journalBox, {height: heightDisplay}]}>
+                {journals.reverse().slice(0, journalNum).map(journal => (
                     <TouchableOpacity key={journal.id} onPress={() => navigation.navigate('SurveyDetail', { surveyId: journal.id })} style={styles.journalEntries}>
                         <View style = {styles.imageJournalEntry}>
                             <Icon name="image-outline" type="ionicon" size={0.12 * width}/>
@@ -76,7 +87,7 @@ export default function SurveyScreen({navigation}) {
                     </TouchableOpacity>
                 ))}
 
-                    <TouchableOpacity style = {styles.moreButton}>
+                    <TouchableOpacity style = {styles.moreButton} onPress={handleIncreaseSize}>
                         <Icon name = "arrow-down-circle-outline" type = "ionicon" size={0.12 * width}/>
                         <Text style={styles.journalTitle}>
                             More

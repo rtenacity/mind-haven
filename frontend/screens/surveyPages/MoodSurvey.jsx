@@ -43,7 +43,7 @@ export default function SurveyScreen({navigation}) {
     return(
         <SafeAreaView style={styles.dashboardContainer}>
             <ScrollView>
-                <Header /> 
+                <Header navigation={navigation}/> 
                 <View style = {styles.newJournal}>
                     <Text style = {styles.dashboardTitle}>New Survey</Text>
                     <TouchableOpacity onPress={() => navigation.navigate('NewSurvey')}>

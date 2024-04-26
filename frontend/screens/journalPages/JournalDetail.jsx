@@ -51,7 +51,7 @@ export default function JournalDetail({ route, navigation }) {
 
     return (
         <SafeAreaView style={{ backgroundColor: '#AEC5EB', flex: 1, flexGrow: 1 }}>
-            <Header />
+            <Header navigation={navigation}/>
             <View style={styles.headerJournal}>
                 <Text style={styles.titleJournal}>
                     {journal?.title || "(Untitled)"}

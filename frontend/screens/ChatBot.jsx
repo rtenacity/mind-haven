@@ -45,32 +45,32 @@ export default function ChatBoxScreen({ navigation }) {
   };
 
   return (
-    <SafeAreaView style={newStyles.chatbotContainer}>
-      <Header />
-      <View style={newStyles.chatContainer}>
+    <SafeAreaView style={styles.chatbotContainer}>
+      <Header navigation={navigation}/>
+      <View style={styles.chatContainer}>
         <ScrollView 
-          style={newStyles.chatHistoryScroll}
+          style={styles.chatHistoryScroll}
           ref={scrollViewRef}
           onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}
         >
           {chatHistory.slice(1).map((chat, index) => (
-            <View key={index} style={newStyles.messageContainer}>
-              <View style={[newStyles.message, chat.role === "user" ? newStyles.userMessage : newStyles.systemMessage]}>
+            <View key={index} style={styles.messageContainer}>
+              <View style={[styles.message, chat.role === "user" ? styles.userMessage : styles.systemMessage]}>
                 <Text style = {styles.normalText}>{chat.content}</Text>
               </View>
             </View>
           ))}
         </ScrollView>
-        <View style={newStyles.inputWrapper}>
+        <View style={styles.inputWrapper}>
           <TextInput
-            style={newStyles.inputContainer}
+            style={styles.chatInputContainer}
             onChangeText={setInputText}
             value={inputText}
             placeholder="Type your message here..."
             onSubmitEditing={sendMessage}
           />
           <TouchableOpacity
-            style={newStyles.sendButton}
+            style={styles.sendButton}
             onPress={sendMessage}
             disabled={!inputText.trim()}
           >
@@ -87,102 +87,4 @@ export default function ChatBoxScreen({ navigation }) {
     </SafeAreaView>
   );
 }
-
-// Updated styles
-const newStyles = StyleSheet.create({
-  chatContainer: {
-    height: '73%',
-    // Add shadow to the container's border
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-  },
-  chatHistoryScroll: {
-    borderRadius: 15,
-    borderWidth: 2,
-    borderColor: "#331B4B",
-    marginHorizontal: 10,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-  },
-  message: {
-    backgroundColor: '#AFCDFF',
-    flexDirection: 'row',
-    maxWidth: '80%',
-    borderRadius: 10,
-    marginVertical: 0.01 * width,
-    padding: 5,
-    marginHorizontal: 0.01 * width,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-  },
-  userMessage: {
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    alignSelf: 'flex-end',
-    backgroundColor: '#8A7DDC',
-    borderRadius: 10,
-  },  
-  systemMessage: {
-    alignSelf: 'flex-end',
-    backgroundColor: '#ECECEC',
-    borderRadius: 10,
-  },
-  messageContainer: {
-    flexDirection: 'row',
-    paddingHorizontal: 0.02 * width,
-    paddingVertical: 0.02 * width,
-    width: '100%',  // Ensure the container takes full width
-  },
-  
-  inputWrapper: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 10,
-  },
-  inputContainer: {
-    width: '80%',
-    height: 50,
-    borderRadius: 10,
-    padding: 10,
-    fontSize: 18,
-    backgroundColor: '#fff',
-    marginRight: 10,
-    fontFamily: "KaiseiOpti_400Regular",
-    // Add shadow to the input field
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 6,
-  },
-  sendButton: {
-    width: 70,
-    height: 50,
-    backgroundColor: "#8A7DDC",
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-    // Add shadow to the send button
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 6,
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 18,
-    fontFamily: "KaiseiOpti_400Regular",
-  },
-  chatbotContainer: {
-      flex: 1,
-      backgroundColor: "#AEC5EB",
-      position: 'relative',
-  }
-});
 

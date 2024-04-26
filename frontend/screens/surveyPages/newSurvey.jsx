@@ -5,12 +5,15 @@ import {
   Text,
   TouchableOpacity,
   Dimensions,
+  ScrollView
 } from "react-native";
 import styles from "../../styles";
 import { Icon } from "@rneui/themed";
 import { FIRESTORE, FIREBASE_AUTH } from "../../FirebaseConfig";
 import { addDoc, collection } from "firebase/firestore";
 import { Slider } from '@rneui/themed';
+import Header from "../../component/Header";
+import { StyleSheet } from "react-native";
 
 const { width } = Dimensions.get("window");
 
@@ -40,29 +43,38 @@ export default function MoodSurveyScreen({ navigation }) {
 
   return (
     <SafeAreaView style={{ backgroundColor: "#AEC5EB", flex: 1, flexGrow: 1 }}>
+    <Header navigation={navigation}/>
+    <ScrollView>
       <View style={styles.headerJournal}>
           <Text style={styles.titleJournal}>
               {new Date().toDateString() || "(Untitled)"}
           </Text>
+          <TouchableOpacity onPress={handleSave}><Icon name='done' size={0.10 * width}/></TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.goBack()}><Icon name='exit-to-app' size={0.10 * width} /></TouchableOpacity>
       </View>
-      <View style={{ padding: 20 }}>
-        <Text style={styles.fieldText}> Mood (1-10):</Text>
 
+      <View style={{justifyContent: "center", alignItems:"center"}}>
+      <Text style={newStyles.fieldText}>Understanding how you're feeling is key to unlocking mental health.</Text>
+     <View style={{padding:2}}></View>
+      </View>
+      <View style={styles.chatHistoryScroll}>
+        <Text style={newStyles.fieldText}>Your mood can change how you act. Rate how you're feeling on a scale from 1-10:</Text>
+        <View style={{padding:2}}></View>
         <Slider
+          style={{ width: 0.8 * width, alignSelf: "center"}}
           value={mood}
           onValueChange={setMood}
           maximumValue={10}
           minimumValue={0}
           step={1}
-          allowTouchTrack
+          allowTouchTrack = {true}
           trackStyle={{ height: 5, backgroundColor: "transparent" }}
           thumbStyle={{ height: 20, width: 20, backgroundColor: "transparent" }}
           thumbProps={{
             children: (
               <Icon 
-                name="heartbeat"
-                type="font-awesome"
+                name="happy-outline"
+                type="ionicon"
                 size={20}
                 reverse
                 containerStyle={{ bottom: 20, right: 20 }}
@@ -71,8 +83,11 @@ export default function MoodSurveyScreen({ navigation }) {
             ),
           }}
         />
-        <Text style={styles.fieldText}>Energy (1-10):</Text>
+        <View style={{padding:2}}></View>
+        <Text style={newStyles.fieldText}>Your energy can change your drive. Rate your energy level on a scale from 1-10:</Text>
+        <View style={{padding:2}}></View>
         <Slider
+          style={{ width: 0.8 * width, alignSelf: "center"}}
           value={energy}
           onValueChange={setEnergy}
           maximumValue={10}
@@ -84,8 +99,8 @@ export default function MoodSurveyScreen({ navigation }) {
           thumbProps={{
             children: (
               <Icon 
-                name="heartbeat"
-                type="font-awesome"
+                name="flash-outline"
+                type="ionicon"
                 size={20}
                 reverse
                 containerStyle={{ bottom: 20, right: 20 }}
@@ -94,8 +109,11 @@ export default function MoodSurveyScreen({ navigation }) {
             ),
           }}
         />
-        <Text style={styles.fieldText}>Stress (1-10):</Text>
+        <View style={{padding:2}}></View>
+        <Text style={newStyles.fieldText}>Stress can negatively impact your mental and physical health. Rate your stress level on a scale from 1-10:</Text>
+        <View style={{padding:2}}></View>
         <Slider
+          style={{ width: 0.8 * width, alignSelf: "center"}}
           value={stress}
           onValueChange={setStress}
           maximumValue={10}
@@ -117,7 +135,28 @@ export default function MoodSurveyScreen({ navigation }) {
             ),
           }}
         />
+        <Text></Text>
+        <View style={{padding:10}}></View>
       </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
+
+const newStyles = StyleSheet.create({
+  centerFieldText: {
+    fontFamily: "KaiseiOpti_400Regular",
+    color: "#331B4B",
+    fontSize: 0.05 * width,
+    margin: 0.02 * width,
+    textAlign: 'center',
+    padding: 10
+  },
+  fieldText: {
+    fontFamily: "KaiseiOpti_400Regular",
+    color: "#331B4B",
+    fontSize: 0.05 * width,
+    margin: 0.02 * width,
+    padding: 10
+  },
+});

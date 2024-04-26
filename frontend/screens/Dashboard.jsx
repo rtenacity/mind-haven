@@ -14,6 +14,7 @@ const { width, height } = Dimensions.get('window');
 
 export default function DashboardScreen({ navigation }) {
   const [journals, setJournals] = useState([]);
+  const [surveys, setSurveys] = useState([]);
   const user = FIREBASE_AUTH.currentUser;
 
   useFocusEffect(
@@ -23,9 +24,10 @@ export default function DashboardScreen({ navigation }) {
         return;
       }
 
+      // Journals
       const journalsRef = collection(FIRESTORE, "journals", user.uid, "journals");
-      const q = query(journalsRef, where("date", "<=", new Date()));
-      const unsubscribe = onSnapshot(q, (snapshot) => {
+      const journalsQuery = query(journalsRef, where("date", "<=", new Date()));
+      const journalsUnsubscribe = onSnapshot(journalsQuery, (snapshot) => {
         const loadedJournals = snapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
@@ -33,9 +35,24 @@ export default function DashboardScreen({ navigation }) {
         setJournals(loadedJournals);
       });
 
-      return () => unsubscribe(); // Cleanup on unmount
+      // Surveys
+      const surveysRef = collection(FIRESTORE, "surveys", user.uid, "surveys");
+      const surveysQuery = query(surveysRef, where("date", "<=", new Date()));
+      const surveysUnsubscribe = onSnapshot(surveysQuery, (snapshot) => {
+        const loadedSurveys = snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setSurveys(loadedSurveys);
+      });
+
+      return () => {
+        journalsUnsubscribe(); // Cleanup journals on unmount
+        surveysUnsubscribe(); // Cleanup surveys on unmount
+      };
     }, [user])
   );
+
 
   return (
     <SafeAreaView style={styles.dashboardContainer}>
@@ -71,13 +88,32 @@ export default function DashboardScreen({ navigation }) {
         </View>
         <Text style={styles.dashboardTitle}>Mood Surveys</Text>
         <View style={styles.dashBox}>
+          {surveys.length > 0 ? (
+            surveys.reverse().slice(0, 4).map(survey => (
+              <TouchableOpacity key={survey.id} onPress={() => navigation.navigate('SurveyDetail', { surveyId: survey.id })} style={styles.journalEntries}>
+                <View style={styles.imageJournalEntry}>
+                  <Icon name="image-outline" type="ionicon" size={0.12 * width} />
+                </View>
+                <View style={{ marginLeft: 0.03 * width }}>
+                  <Text style={styles.journalTitle}>Survey {new Date(survey.date.toDate()).toLocaleDateString()}</Text>
+                </View>
+              </TouchableOpacity>
+            ))
+          ) : (
+            <Text style={styles.meditationText}>No new activity</Text>
+          )}
+
+          <TouchableOpacity style={styles.moreButton} onPress={() => navigation.navigate('Journal')}>
+            <Icon name="arrow-down-circle-outline" type="ionicon" size={0.12 * width} />
+            <Text style={styles.journalTitle}>More</Text>
+          </TouchableOpacity>
         </View>
         <View>
           <Text style={styles.dashboardTitle}>Chatbot</Text>
           <View style={styles.dashBox}>
           </View>
         </View>
-        <View style={{marginBottom: height * 0.2}}/>
+        <View style={{ marginBottom: height * 0.2 }} />
       </ScrollView>
       <NavigationBar nav={navigation} />
     </SafeAreaView>

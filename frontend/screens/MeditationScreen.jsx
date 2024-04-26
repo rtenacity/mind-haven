@@ -7,41 +7,36 @@ import { Button, Icon } from "@rneui/themed";
 export default function MeditationScreen({ route, navigation }) {
     const [playing, setPlaying] = useState(true);
     const { time } = route.params;
-    console.log(time);
     return (
-        <SafeAreaView style = {{backgroundColor: '#AEC5EB', flex:1}}>
-            <ScrollView>
-                <View style = {styles.realMeditationScreenContainer}>
-                    <Image source={require("../assets/landscape.jpg")} style={styles.meditationScreenImage} />
-                    <CountdownCircleTimer
-                    isPlaying={playing}
-                    duration={time}
-                    size={350}
-                    colors={['#8A7DDC']}
-                    trailColor={'#A7B7E8'}>
-                        {({ remainingTime }) =>
-                        <View style = {{justifyContent: 'center', alignItems: 'center'}}>
-                            <Text style={styles.titleText}>{Math.floor(remainingTime/60)}{':'}{remainingTime % 60 < 10 ? '0' : ''}{Math.floor(remainingTime%60)}</Text>
-                            <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginBottom: 10}}>
-                                <Button buttonStyle={{borderRadius: 20, marginRight: 10}} color = '#8A7DDC' onPress={
-                                    () => {
-                                        setPlaying(false);
-                                    }
-                                }>
-                                    <Icon name="pause" type='ionicon' size={50}/></Button>
-                                <Button buttonStyle={{borderRadius: 20, marginRight: 10}} color = '#8A7DDC' onPress={
-                                    () => {
-                                        setPlaying(true);
-                                    }
-                                }>
-                                    <Icon name="controller-play" type='entypo' size={50}/></Button>
-                                <Button buttonStyle={{borderRadius: 20}} color = '#AD7DDC' onPress={() => {navigation.navigate('MeditationSetup')}}>
-                                    <Icon name="exit-outline" type='ionicon' size={50}/></Button>
-                            </View>
-                        </View>}
-                    </CountdownCircleTimer>
-                </View>
-            </ScrollView>
+        <SafeAreaView style = {[styles.realMeditationScreenContainer, {backgroundColor: '#AEC5EB'} ]}>
+            <Image source={require("../assets/landscape.jpg")} style={styles.meditationScreenImage} />
+            <CountdownCircleTimer
+            isPlaying={playing}
+            duration={time}
+            size={300}
+            colors={['#8A7DDC']}
+            trailColor={'#A7B7E8'}>
+                {({ remainingTime }) =>
+                <View style = {{justifyContent: 'center', alignItems: 'center'}}>
+                    <Text style={styles.titleText}>{Math.floor(remainingTime/60)}{':'}{remainingTime % 60 < 10 ? '0' : ''}{Math.floor(remainingTime%60)}</Text>
+                    <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginBottom: 10}}>
+                        <Button buttonStyle={{borderRadius: 20, marginRight: 10}} color = '#8A7DDC' onPress={
+                            () => {
+                                setPlaying(false);
+                            }
+                        }>
+                            <Icon name="pause" type='ionicon' size={30}/></Button>
+                        <Button buttonStyle={{borderRadius: 20, marginRight: 10}} color = '#8A7DDC' onPress={
+                            () => {
+                                setPlaying(true);
+                            }
+                        }>
+                            <Icon name="controller-play" type='entypo' size={30}/></Button>
+                        <Button buttonStyle={{borderRadius: 20}} color = '#AD7DDC' onPress={() => {navigation.navigate('MeditationSetup')}}>
+                            <Icon name="exit-outline" type='ionicon' size={30}/></Button>
+                    </View>
+                </View>}
+            </CountdownCircleTimer>
         </SafeAreaView>
     );
 }

@@ -1,0 +1,107 @@
+import React, { useState } from 'react';
+import { SafeAreaView, View, Text } from 'react-native';
+import { Button, Icon } from '@rneui/themed';
+import styles from '../styles';
+import Header from '../component/Header';
+import NavigationBar from '../component/Navbar';
+import { collection, addDoc } from 'firebase/firestore';
+import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
+import { FIREBASE_AUTH, FIRESTORE } from '../FirebaseConfig';
+
+
+export default function MeditationSetup({ navigation }) {
+
+    const [time, setTime] = useState(0);
+    const [initialTime, setInitialTime] = useState(0);
+    const [playing, setPlaying] = useState(false);
+    const user = FIREBASE_AUTH.currentUser;
+
+    const handleTimeSet = (minutes) => {
+        const seconds = minutes * 60;
+        setTime(seconds);
+        setInitialTime(seconds);
+        setPlaying(true);
+    };
+
+    const handleComplete = async () => {
+        if (user) {
+            const date = new Date();
+            const dateString = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+            const sessionRef = collection(FIRESTORE, "meditation_sessions", user.uid, dateString);
+            await addDoc(sessionRef, {
+                time: initialTime / 60,
+                completedAt: date,
+            });
+            console.log(`${initialTime / 60} minute session completed`);
+        }
+        setPlaying(false);
+        setTime(0);
+        return [false, 0]; // Do not restart the timer automatically
+    };
+
+    return (
+        
+        <SafeAreaView style={[styles.dashboardContainer, { textAlign: 'center', alignItems: 'center' }]}>
+            <Header navigation={navigation} />
+            <View style={{ paddingVertical: 10 }} />
+
+            <CountdownCircleTimer
+                key={time}
+                isPlaying={playing}
+                duration={time}
+                size={300}
+                colors={['#8A7DDC']}
+                trailColor={'#A7B7E8'}
+                onComplete={handleComplete}>
+                {({ remainingTime }) => (
+                    <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={styles.titleText}>{Math.floor(remainingTime / 60)}:{remainingTime % 60 < 10 ? '0' : ''}{Math.floor(remainingTime % 60)}</Text>
+                        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginBottom: 10 }}>
+                            <Button buttonStyle={{ borderRadius: 20, marginRight: 10 }} color='#8A7DDC' onPress={() => setPlaying(false)}>
+                                <Icon name="pause" type='ionicon' size={30} />
+                            </Button>
+                            <Button buttonStyle={{ borderRadius: 20, marginRight: 10 }} color='#8A7DDC' onPress={() => setPlaying(true)}>
+                                <Icon name="controller-play" type='entypo' size={30} />
+                            </Button>
+                            <Button buttonStyle={{ borderRadius: 20 }} color='#AD7DDC' onPress={() => {
+                                setPlaying(false);
+                                setTime(0);
+                            }}>
+                                <Icon name="refresh" type='ionicon' size={30} />
+                            </Button>
+                        </View>
+                    </View>
+                )}
+            </CountdownCircleTimer>
+            <View style={{ paddingVertical: 10 }} />
+
+            <View style={styles.meditationButtonViewSetup}>
+                <Button color="#8A7DDC" buttonStyle={styles.meditationButtonSetup} onPress={() => {handleTimeSet(0.1)}}>
+                    <Text style={styles.meditationButtonText}>5 Min</Text>
+                </Button>
+                <Button color="#8A7DDC" buttonStyle={styles.meditationButtonSetup} onPress={() => {handleTimeSet(10)}}>
+                    <Text style={styles.meditationButtonText}>10 Min</Text>
+                </Button>
+            </View>
+            <View style={styles.meditationButtonViewSetup}>
+                <Button color="#8A7DDC" buttonStyle={styles.meditationButtonSetup} onPress={() => {handleTimeSet(15)}}>
+                    <Text style={styles.meditationButtonText}>15 Min</Text>
+                </Button>
+                <Button color="#8A7DDC" buttonStyle={styles.meditationButtonSetup} onPress={() => {handleTimeSet(20)}}>
+                    <Text style={styles.meditationButtonText}>20 Min</Text>
+                </Button>
+            </View>
+            <View style={styles.meditationButtonViewSetup}>
+                <Button color="#8A7DDC" buttonStyle={styles.meditationButtonSetup} onPress={() => {handleTimeSet(25)}}>
+                    <Text style={styles.meditationButtonText}>25 Min</Text>
+                </Button>
+                <Button color="#8A7DDC" buttonStyle={styles.meditationButtonSetup} onPress={() => {handleTimeSet(30)}}>
+                    <Text style={styles.meditationButtonText}>30 Min</Text>
+                </Button>
+            </View>
+
+            <NavigationBar nav={navigation} />
+        </SafeAreaView>
+    );
+
+}

@@ -26,100 +26,45 @@ export default function MoodSurveyScreen({ navigation }) {
     return colors[(value-1)];  
   };
 
-  const handleSave = async () => {
-    if (user) {
-      const surveysRef = collection(FIRESTORE, "surveys", user.uid, "surveys");
-      await addDoc(surveysRef, {
-        mood,
-        energy,
-        stress,
-        date: new Date(),
-      });
-    }
-  };
-
-  return (
-    <SafeAreaView style={{ backgroundColor: "#AEC5EB", flex: 1, flexGrow: 1 }}>
-      <View style={styles.headerSurvey}>
-        <TouchableOpacity onPress={handleSave}>
-          <Icon name="done" size={0.1 * width} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-          <Icon name="exit-to-app" size={0.1 * width} />
-        </TouchableOpacity>
-      </View>
-      <View style={{ padding: 20 }}>
-        <Text style={styles.fieldText}> Mood (1-10):</Text>
-
-        <Slider
-          value={mood}
-          onValueChange={setMood}
-          maximumValue={10}
-          minimumValue={1}
-          step={1}
-          allowTouchTrack
-          trackStyle={{ height: 5, backgroundColor: "transparent" }}
-          thumbStyle={{ height: 20, width: 20, backgroundColor: "transparent" }}
-          thumbProps={{
-            children: (
-              <Icon 
-                name="heartbeat"
-                type="font-awesome"
-                size={20}
-                reverse
-                containerStyle={{ bottom: 20, right: 20 }}
-                color={color(mood)}
-              />
-            ),
-          }}
-        />
-        <Text style={styles.fieldText}>Energy (1-10):</Text>
-        <Slider
-          value={energy}
-          onValueChange={setEnergy}
-          maximumValue={10}
-          minimumValue={1}
-          step={1}
-          allowTouchTrack
-          trackStyle={{ height: 5, backgroundColor: "transparent"}}
-          thumbStyle={{ height: 20, width: 20, backgroundColor: "transparent" }}
-          thumbProps={{
-            children: (
-              <Icon 
-                name="heartbeat"
-                type="font-awesome"
-                size={20}
-                reverse
-                containerStyle={{ bottom: 20, right: 20 }}
-                color={color(energy)}
-              />
-            ),
-          }}
-        />
-        <Text style={styles.fieldText}>Stress (1-10):</Text>
-        <Slider
-          value={stress}
-          onValueChange={setStress}
-          maximumValue={10}
-          minimumValue={1}
-          step={1}
-          allowTouchTrack
-          trackStyle={{ height: 5, backgroundColor: "transparent" }}
-          thumbStyle={{ height: 20, width: 20, backgroundColor: "transparent" }}
-          thumbProps={{
-            children: (
-              <Icon 
-                name="heartbeat"
-                type="font-awesome"
-                size={20}
-                reverse
-                containerStyle={{ bottom: 20, right: 20 }}
-                color={color(stress)}
-              />
-            ),
-          }}
-        />
-      </View>
-    </SafeAreaView>
-  );
+    return (
+        <SafeAreaView style={{backgroundColor: '#AEC5EB', flex: 1, flexGrow: 1}}>
+            <View style={styles.headerSurvey}>
+                <TouchableOpacity onPress={handleSave}>
+                    <Icon name='done' size={0.10 * width} />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Dashboard')}>
+                    <Icon name='exit-to-app' size={0.10 * width} />
+                </TouchableOpacity>
+            </View>
+            <View style={{ padding: 20 }}>
+                <Text style={styles.label}>Mood (1-10):</Text>
+                <Slider
+                    value={mood}
+                    onValueChange={setMood}
+                    maximumValue={10}
+                    minimumValue={1}
+                    step={1}
+                    style={{ width: '100%', height: 40 }}
+                />
+                <Text style={styles.label}>Energy (1-10):</Text>
+                <Slider
+                    value={energy}
+                    onValueChange={setEnergy}
+                    maximumValue={10}
+                    minimumValue={1}
+                    step={1}
+                    style={{ width: '100%', height: 40 }}
+                />
+                <Text style={styles.label}>Stress (1-10):</Text>
+                <Slider
+                    value={stress}
+                    onValueChange={setStress}
+                    maximumValue={10}
+                    minimumValue={1}
+                    step={1}
+                    style={{ width: '100%', height: 40 }}
+                />
+            </View>
+        </SafeAreaView>
+    );
 }

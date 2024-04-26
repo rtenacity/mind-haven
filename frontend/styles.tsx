@@ -4,6 +4,8 @@ const { width, height } = Dimensions.get('window');
 
 
 const styles = StyleSheet.create({
+
+
     container: {
         flex: 1,
         alignItems: "center",
@@ -36,15 +38,16 @@ const styles = StyleSheet.create({
         fontFamily: "KaiseiOpti_700Bold",
         color: "#331B4B",
         fontSize: 0.12 * width,
-        marginHorizontal: 0.06 * width,
+        marginHorizontal: 0.02 * width,
         marginVertical: 0.02 * width,
+        textAlign: "center",
     },
     subtitleText:{ 
         fontFamily: "KaiseiOpti_400Regular",
         color: "#331B4B",
         fontSize: 0.06 * width,
         marginHorizontal: 0.06 * width,
-        marginVertical: 0.04 * width,
+        marginVertical: 0.02 * width,
     },
     inputTextAbove:{
         fontFamily: "KaiseiOpti_400Regular",
@@ -135,6 +138,7 @@ const styles = StyleSheet.create({
     headerDashboard: {
         flexDirection: 'row',
         justifyContent: 'space-between',
+        
         alignContent: 'center',
         margin: 0.05 * width,
 
@@ -326,7 +330,7 @@ const styles = StyleSheet.create({
     },
     settingsBox: {
         height: 50,
-        width: 0.9 * width,
+        width: 0.7 * width,
         borderRadius: 15,
         justifyContent: 'center',
         paddingHorizontal: 20,

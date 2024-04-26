@@ -25,15 +25,15 @@ export default function MeditationScreen({ route, navigation }) {
                                 setPlaying(false);
                             }
                         }>
-                            <Icon name="pause" type='ionicon' size={50}/></Button>
+                            <Icon name="pause" type='ionicon' size={30}/></Button>
                         <Button buttonStyle={{borderRadius: 20, marginRight: 10}} color = '#8A7DDC' onPress={
                             () => {
                                 setPlaying(true);
                             }
                         }>
-                            <Icon name="controller-play" type='entypo' size={50}/></Button>
+                            <Icon name="controller-play" type='entypo' size={30}/></Button>
                         <Button buttonStyle={{borderRadius: 20}} color = '#AD7DDC' onPress={() => {navigation.navigate('MeditationSetup')}}>
-                            <Icon name="exit-outline" type='ionicon' size={50}/></Button>
+                            <Icon name="exit-outline" type='ionicon' size={30}/></Button>
                     </View>
                 </View>}
             </CountdownCircleTimer>

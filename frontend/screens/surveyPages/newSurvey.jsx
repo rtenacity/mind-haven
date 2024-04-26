@@ -32,7 +32,7 @@ export default function MoodSurveyScreen({ navigation }) {
                 <TouchableOpacity onPress={handleSave}>
                     <Icon name='done' size={0.10 * width} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Dashboard')}>
                     <Icon name='exit-to-app' size={0.10 * width} />
                 </TouchableOpacity>
             </View>

@@ -25,7 +25,7 @@ export default function LandingScreen({ navigation }) {
       style={styles.container}
     >
       <Image source={require("../assets/logo.png")} style={styles.bigLogo} />
-      <View style={{}}>
+      <View style={{textAlign: "center"}}>
         <Text style={styles.titleText}>{"The Mind \nHaven"}</Text>
         <Text style={styles.subtitleText}>
           The mind comes first.

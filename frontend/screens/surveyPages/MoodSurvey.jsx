@@ -23,7 +23,7 @@ export default function SurveyScreen({navigation}) {
                 return;
             }
 
-            const journalsRef = collection(FIRESTORE, "journals", user.uid, "journals");
+            const journalsRef = collection(FIRESTORE, "surveys", user.uid, "surveys");
             // Consider adjusting the query to suit your specific timestamp requirements
             const q = query(journalsRef, where("date", "<=", new Date()));
             const unsubscribe = onSnapshot(q, (snapshot) => {
@@ -45,7 +45,7 @@ export default function SurveyScreen({navigation}) {
             <ScrollView>
                 <Header /> 
                 <View style = {styles.newJournal}>
-                    <Text style = {styles.dashboardTitle}>New Journal</Text>
+                    <Text style = {styles.dashboardTitle}>New Survey</Text>
                     <TouchableOpacity onPress={() => navigation.navigate('NewSurvey')}>
                         <View style={{
                             width: 0.14 * width,
@@ -71,8 +71,7 @@ export default function SurveyScreen({navigation}) {
                             <Icon name="image-outline" type="ionicon" size={0.12 * width}/>
                         </View>
                         <View style={{ marginLeft:0.03 * width }}>
-                            <Text style = {styles.journalTitle}>{journal.title || "(Untitled)"}</Text>
-                            <Text style = {styles.journalDate}>{new Date(journal.date.toDate()).toLocaleDateString()}</Text>
+                            <Text style = {styles.journalTitle}>Survey {new Date(journal.date.toDate()).toLocaleDateString()}</Text>
                         </View>
                     </TouchableOpacity>
                 ))}

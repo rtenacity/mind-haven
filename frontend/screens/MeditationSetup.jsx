@@ -1,45 +1,84 @@
-import * as React from 'react';
-import { View, Text, ScrollView, SafeAreaView, TextInput } from 'react-native';
+import React, { useState } from 'react';
+import { SafeAreaView, View, Text } from 'react-native';
+import { Button, Icon } from '@rneui/themed';
 import styles from '../styles';
-import NavigationBar from '../component/Navbar';
 import Header from '../component/Header';
-import { Button } from '@rneui/themed';
+import NavigationBar from '../component/Navbar';
+import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
+
 
 export default function MeditationSetup({ navigation }) {
+
+    const [time, setTime] = useState(0);
+    const [playing, setPlaying] = useState(false);
+
     return (
-        <SafeAreaView style = {[styles.dashboardContainer, {textAlign: 'center', alignItems: 'center'}]}>
-            <Header navigation={navigation}/>
-            <View style = {{paddingVertical: 30}}/>
-            <View style = {{textAlgin: 'center', justifyContent: 'center', alignItems: 'center'}}>
-                <Text style = {styles.titleMeditation}>Meditation Timer</Text>
+        
+        <SafeAreaView style={[styles.dashboardContainer, { textAlign: 'center', alignItems: 'center' }]}>
+            <Header navigation={navigation} />
+            <View style={{ paddingVertical: 10 }} />
+
+            <CountdownCircleTimer
+                key={time}
+                isPlaying={playing}
+                duration={time}
+                size={300}
+                colors={['#8A7DDC']}
+                trailColor={'#A7B7E8'}>
+                {({ remainingTime }) =>
+                    <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={styles.titleText}>{Math.floor(remainingTime / 60)}{':'}{remainingTime % 60 < 10 ? '0' : ''}{Math.floor(remainingTime % 60)}</Text>
+                        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginBottom: 10 }}>
+                            <Button buttonStyle={{ borderRadius: 20, marginRight: 10 }} color='#8A7DDC' onPress={
+                                () => {
+                                    setPlaying(false);
+                                }
+                            }>
+                                <Icon name="pause" type='ionicon' size={30} /></Button>
+                            <Button buttonStyle={{ borderRadius: 20, marginRight: 10 }} color='#8A7DDC' onPress={
+                                () => {
+                                    setPlaying(true);
+                                }
+                            }>
+                                <Icon name="controller-play" type='entypo' size={30} /></Button>
+                            <Button buttonStyle={{ borderRadius: 20 }} color='#AD7DDC' onPress={() => {
+                                setPlaying(false); // Stop the timer
+                                setTime(0); // Reset the time to 0
+                            }}>
+                                <Icon name="refresh" type='ionicon' size={30} />
+                            </Button>
+                        </View>
+                    </View>}
+            </CountdownCircleTimer>
+            <View style={{ paddingVertical: 10 }} />
+
+            <View style={styles.meditationButtonViewSetup}>
+                <Button color="#8A7DDC" buttonStyle={styles.meditationButtonSetup} onPress={() => { setTime(5 * 60); setPlaying(true); }}>
+                    <Text style={styles.meditationButtonText}>5 Min</Text>
+                </Button>
+                <Button color="#8A7DDC" buttonStyle={styles.meditationButtonSetup} onPress={() => { setTime(10 * 60); setPlaying(true); }}>
+                    <Text style={styles.meditationButtonText}>10 Min</Text>
+                </Button>
             </View>
-            <Text style = {styles.orText}>Choose:</Text>
-            <View style = {styles.meditationButtonViewSetup}>
-                <Button color = "#8A7DDC" buttonStyle= {styles.meditationButtonSetup} onPress={() => {navigation.navigate("MeditationScreen", {time: 5 * 60});}}>
-                    <Text style = {styles.meditationButtonText}>5 Min</Text>
+            <View style={styles.meditationButtonViewSetup}>
+                <Button color="#8A7DDC" buttonStyle={styles.meditationButtonSetup} onPress={() => { setTime(15 * 60); setPlaying(true); }}>
+                    <Text style={styles.meditationButtonText}>15 Min</Text>
                 </Button>
-                <Button color = "#8A7DDC" buttonStyle= {styles.meditationButtonSetup} onPress={() => {navigation.navigate("MeditationScreen", {time: 10 * 60});}}>
-                    <Text style = {styles.meditationButtonText}>10 Min</Text>
-                </Button>
-            </View>
-            <View style = {styles.meditationButtonViewSetup}>
-                <Button color = "#8A7DDC" buttonStyle= {styles.meditationButtonSetup} onPress={() => {navigation.navigate("MeditationScreen", {time: 15 * 60});}}>
-                    <Text style = {styles.meditationButtonText}>15 Min</Text>
-                </Button>
-                <Button color = "#8A7DDC" buttonStyle= {styles.meditationButtonSetup} onPress={() => {navigation.navigate("MeditationScreen", {time: 20 * 60});}}>
-                    <Text style = {styles.meditationButtonText}>20 Min</Text>
+                <Button color="#8A7DDC" buttonStyle={styles.meditationButtonSetup} onPress={() => { setTime(20 * 60); setPlaying(true); }}>
+                    <Text style={styles.meditationButtonText}>20 Min</Text>
                 </Button>
             </View>
-            <View style = {styles.meditationButtonViewSetup}>
-                <Button color = "#8A7DDC" buttonStyle= {styles.meditationButtonSetup} onPress={() => {navigation.navigate("MeditationScreen", {time: 25 * 60});}}>
-                    <Text style = {styles.meditationButtonText}>25 Min</Text>
+            <View style={styles.meditationButtonViewSetup}>
+                <Button color="#8A7DDC" buttonStyle={styles.meditationButtonSetup} onPress={() => { setTime(25 * 60); setPlaying(true); }}>
+                    <Text style={styles.meditationButtonText}>25 Min</Text>
                 </Button>
-                <Button color = "#8A7DDC" buttonStyle= {styles.meditationButtonSetup} onPress={() => {navigation.navigate("MeditationScreen", {time: 30 * 60});}}>
-                    <Text style = {styles.meditationButtonText}>30 Min</Text>
+                <Button color="#8A7DDC" buttonStyle={styles.meditationButtonSetup} onPress={() => { setTime(30 * 60); setPlaying(true); }}>
+                    <Text style={styles.meditationButtonText}>30 Min</Text>
                 </Button>
             </View>
-            <View style = {{padding: 75}}></View>
+
             <NavigationBar nav={navigation} />
         </SafeAreaView>
     );
+
 }

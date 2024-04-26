@@ -40,13 +40,11 @@ export default function MoodSurveyScreen({ navigation }) {
 
   return (
     <SafeAreaView style={{ backgroundColor: "#AEC5EB", flex: 1, flexGrow: 1 }}>
-      <View style={styles.headerSurvey}>
-        <TouchableOpacity onPress={handleSave}>
-          <Icon name="done" size={0.1 * width} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-          <Icon name="exit-to-app" size={0.1 * width} />
-        </TouchableOpacity>
+      <View style={styles.headerJournal}>
+          <Text style={styles.titleJournal}>
+              {new Date().toDateString() || "(Untitled)"}
+          </Text>
+          <TouchableOpacity onPress={() => navigation.goBack()}><Icon name='exit-to-app' size={0.10 * width} /></TouchableOpacity>
       </View>
       <View style={{ padding: 20 }}>
         <Text style={styles.fieldText}> Mood (1-10):</Text>
@@ -55,7 +53,7 @@ export default function MoodSurveyScreen({ navigation }) {
           value={mood}
           onValueChange={setMood}
           maximumValue={10}
-          minimumValue={1}
+          minimumValue={0}
           step={1}
           allowTouchTrack
           trackStyle={{ height: 5, backgroundColor: "transparent" }}
@@ -78,7 +76,7 @@ export default function MoodSurveyScreen({ navigation }) {
           value={energy}
           onValueChange={setEnergy}
           maximumValue={10}
-          minimumValue={1}
+          minimumValue={0}
           step={1}
           allowTouchTrack
           trackStyle={{ height: 5, backgroundColor: "transparent"}}
@@ -101,7 +99,7 @@ export default function MoodSurveyScreen({ navigation }) {
           value={stress}
           onValueChange={setStress}
           maximumValue={10}
-          minimumValue={1}
+          minimumValue={0}
           step={1}
           allowTouchTrack
           trackStyle={{ height: 5, backgroundColor: "transparent" }}

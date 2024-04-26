@@ -41,7 +41,6 @@ export default function JournalScreen({navigation}) {
                 />
                 <TouchableOpacity onPress={handleSave}><Icon name='done' size={0.10 * width}/></TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('Journal')}><Icon name='exit-to-app' size={0.10 * width}/></TouchableOpacity>
-                {/* <TouchableOpacity><Icon name='delete' size={0.10 * width}/></TouchableOpacity> */}
             </View>
             <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={10}>
                 <ScrollView

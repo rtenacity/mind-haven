@@ -270,7 +270,7 @@ const styles = StyleSheet.create({
         shadowRadius: 3,
     },
     titleJournal: {
-        width: 0.5 * width,
+        width: 0.6 * width,
         height: 0.07 * height,
         borderRadius: 0.04 * width,
         padding: 0.02 * width,  

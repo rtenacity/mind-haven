@@ -48,11 +48,13 @@ export default function ChatBoxScreen({ navigation }) {
     <SafeAreaView style={styles.chatbotContainer}>
       <Header navigation={navigation}/>
       <View style={styles.chatContainer}>
+      <Text style = {styles.chatTitleText}>AI Therapist</Text>
         <ScrollView 
           style={styles.chatHistoryScroll}
           ref={scrollViewRef}
           onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}
         >
+        
           {chatHistory.slice(1).map((chat, index) => (
             <View key={index} style={styles.messageContainer}>
               <View style={[styles.message, chat.role === "user" ? styles.userMessage : styles.systemMessage]}>

@@ -42,6 +42,14 @@ const styles = StyleSheet.create({
         marginVertical: 0.02 * width,
         textAlign: "center",
     },
+    chatTitleText:{ 
+        fontFamily: "KaiseiOpti_700Bold",
+        color: "#331B4B",
+        fontSize: 0.10 * width,
+        marginHorizontal: 0.02 * width,
+        marginVertical: 0.02 * width,
+        textAlign: "center",
+    },
     subtitleText:{ 
         fontFamily: "KaiseiOpti_400Regular",
         color: "#331B4B",

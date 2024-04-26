@@ -134,10 +134,10 @@ const styles = StyleSheet.create({
     },
     headerDashboard: {
         flexDirection: 'row',
-        alignItems: 'baseline',
         justifyContent: 'space-between',
-        alignContent: 'space-between',
+        alignContent: 'center',
         margin: 0.05 * width,
+
         
     },
     headerIconImage: {
@@ -289,7 +289,8 @@ const styles = StyleSheet.create({
     meditationButtonSetup: {
         width: 125,
         height: 60,
-        borderRadius: 20
+        borderRadius: 20,
+        marginHorizontal: 10
     },
     meditationButtonViewSetup: {
         flexDirection: 'row',
@@ -310,8 +311,8 @@ const styles = StyleSheet.create({
     },
     meditationScreenImage: {
         margin: 20,
-        height: 300,
-        width: 300,
+        height: 275,
+        width: 275,
         borderRadius: 60,
         shadowColor: '#000',
         shadowOffset: { width: 3, height: 3 },
@@ -322,6 +323,14 @@ const styles = StyleSheet.create({
         fontFamily: "KaiseiOpti_700Bold",
         color: "#331B4B",
         fontSize: 0.04 * width,
+    },
+    settingsBox: {
+        height: 50,
+        width: 0.9 * width,
+        borderRadius: 15,
+        justifyContent: 'center',
+        paddingHorizontal: 20,
+        margin: 2.5
     }
 });
   

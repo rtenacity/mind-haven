@@ -39,6 +39,7 @@ export default function Header({ navigation }) {
         }, [])
     );
 
+/*
     const openMenu = () => {
         setMenuVisible(!menuVisible); // Toggle visibility of the dropdown menu
     };
@@ -53,6 +54,7 @@ export default function Header({ navigation }) {
         // Handle sign-out logic, e.g., Firebase sign out
         FIREBASE_AUTH.signOut();
     };
+*/
 
     if (isLoading) {
         return (
@@ -65,15 +67,16 @@ export default function Header({ navigation }) {
     return (
         <View style={styles.headerDashboard}>
             <View style={styles.leftSideDashboard}>
-                <TouchableOpacity onPress={openMenu}>
+                <TouchableOpacity onPress={() => navigation.navigate('UserSettings')}>
                     <Text style={styles.circleText}>{displayName.charAt(0)}</Text>
                 </TouchableOpacity>
-                <Text style={styles.headerIconText}>Hello, {displayName}</Text>
+                <Text style={styles.headerIconText}>Hello,{'\n'}{displayName}</Text>
             </View>
             <Image
                 style={styles.headerIconImage}
                 source={require("../assets/logo.png")} />
-            {menuVisible && (
+         
+            {/* {menuVisible && (
                 <View style={styles.dropdownMenu}>
                     <TouchableOpacity onPress={handleUserSettings}>
                         <Text style={styles.dropdownItem}>User Settings</Text>
@@ -82,7 +85,8 @@ export default function Header({ navigation }) {
                         <Text style={styles.dropdownItem}>Sign Out</Text>
                     </TouchableOpacity>
                 </View>
-            )}
+            )}  */}
+            
         </View>
     );    
 }

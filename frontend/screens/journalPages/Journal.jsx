@@ -44,7 +44,7 @@ export default function JournalScreen({navigation}) {
     return(
         <SafeAreaView style={styles.dashboardContainer}>
             <ScrollView>
-                <Header /> 
+                <Header navigation={navigation}/> 
                 <View style = {styles.newJournal}>
                     <Text style = {styles.dashboardTitle}>New Journal</Text>
                     <TouchableOpacity onPress={() => navigation.navigate('NewJournal')}>
@@ -62,7 +62,6 @@ export default function JournalScreen({navigation}) {
                 </View>
                 <View style={styles.newJournal}>
                     <Text style = {styles.dashboardTitle}>Recent Entries</Text>
-                    <TouchableOpacity><Icon name="search" size={0.12 * width} style={{textAlign: 'right'}}/></TouchableOpacity>
                 </View>
                 <View style={styles.journalEntries}></View>
                 <View style = {styles.journalBox}>

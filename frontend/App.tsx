@@ -16,9 +16,10 @@ import NewJournalScreen from './screens/journalPages/newJournal';
 import MoodSurveyScreen from './screens/surveyPages/newSurvey';
 import JournalDetail from './screens/journalPages/JournalDetail';
 import ChatBoxScreen from './screens/ChatBot';
-import MeditationSetup from './screens/Meditation';
+import MeditationSetup from './screens/MeditationSetup';
 import MeditationScreen from './screens/MeditationScreen';
 import SurveyScreen from './screens/surveyPages/MoodSurvey';
+import UserSettings from './screens/userSettings';
 
 const AppStack = createNativeStackNavigator();
 const Stack = createNativeStackNavigator();
@@ -41,6 +42,7 @@ function AppLayout() {
       <AppStack.Screen name="MeditationScreen" component={MeditationScreen} />
       <AppStack.Screen name="Survey" component={SurveyScreen} />
       <AppStack.Screen name="NewSurvey" component={MoodSurveyScreen} />
+      <AppStack.Screen name="UserSettings" component={UserSettings} />
     </AppStack.Navigator>
   );
 }

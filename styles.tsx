@@ -299,7 +299,7 @@ const styles = StyleSheet.create({
     },
     meditationButtonSetup: {
         width: 125,
-        height: 60,
+        height: 55,
         borderRadius: 20,
         marginHorizontal: 10
     },

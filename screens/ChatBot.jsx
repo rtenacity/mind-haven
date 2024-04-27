@@ -3,13 +3,13 @@ import { View, Text, SafeAreaView, ScrollView, TextInput, TouchableOpacity, Dime
 import styles from '../styles';
 import Header from '../component/Header';
 import NavigationBar from '../component/Navbar';
-import { OPENAI_API_KEY } from '@env';
+import { api } from '@env';
 import OpenAI from 'openai';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 
 const openai = new OpenAI({
-  apiKey: OPENAI_API_KEY
+  apiKey: api
 });
 
 const { width, height } = Dimensions.get('window');

@@ -23,6 +23,32 @@ export default function MeditationSetup({ navigation }) {
         setPlaying(true);
     };
 
+    const populateWeekWithRandomData = async () => {
+        const user = FIREBASE_AUTH.currentUser;
+        if (!user) return;
+    
+        const now = new Date();
+        const currentDay = now.getDay(); // Sunday - 0, Monday - 1, ..., Saturday - 6
+        const startOfWeek = new Date(now.setDate(now.getDate() - currentDay)); // Set to Sunday
+    
+        for (let i = 0; i < 7; i++) {
+            const day = new Date(startOfWeek);
+            day.setDate(day.getDate() + i);
+            const dateString = `${day.getFullYear()}-${day.getMonth() + 1}-${day.getDate()}`;
+            
+            // Generate a random session time between 5 and 30 minutes (in increments of 5)
+            const randomTime = 5 * (Math.floor(Math.random() * 6) + 1);
+            const seconds = randomTime * 60;
+            
+            const sessionRef = collection(FIRESTORE, "meditation_sessions", user.uid, dateString);
+            await addDoc(sessionRef, {
+                time: randomTime,
+                completedAt: day,
+            });
+            console.log(`${randomTime} minute session for ${day.toDateString()} saved`);
+        }
+    };    
+
     const handleComplete = async () => {
         if (user) {
             const date = new Date();
@@ -73,7 +99,7 @@ export default function MeditationSetup({ navigation }) {
                             </View>
                         )}
                         </CountdownCircleTimer>
-                        <View style={{ paddingVertical: 10 }} />
+                        <View style={{ paddingVertical: 5 }} />
 
                         <View style={styles.meditationButtonViewSetup}>
                             <Button color="#8A7DDC" buttonStyle={styles.meditationButtonSetup} onPress={() => {handleTimeSet(5)}}>
@@ -97,6 +123,11 @@ export default function MeditationSetup({ navigation }) {
                             </Button>
                             <Button color="#8A7DDC" buttonStyle={styles.meditationButtonSetup} onPress={() => {handleTimeSet(30)}}>
                                 <Text style={styles.meditationButtonText}>30 Min</Text>
+                            </Button>
+                        </View>
+                        <View style = {styles.meditationButtonViewSetup}>
+                            <Button color="#8A7DDC" buttonStyle={styles.meditationButtonSetup} onPress={populateWeekWithRandomData}>
+                                <Text style={styles.meditationButtonText}>Populate Week</Text>
                             </Button>
                         </View>
                     </View>

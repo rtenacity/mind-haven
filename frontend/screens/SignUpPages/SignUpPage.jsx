@@ -21,7 +21,7 @@ export default function SignUpPageScreen({ navigation }) {
   }
 
   function onSubmit() {
-    navigation.navigate("SignUpOptions", { userName: value });
+    navigation.navigate("PasswordSignUp", { userName: value });
     console.log(value)
   }
 

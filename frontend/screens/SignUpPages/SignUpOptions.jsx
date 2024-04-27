@@ -43,7 +43,6 @@ export default function SignUpOptionsScreen({ navigation, route }) {
             color="#8A7DDC"
           />
           <Text style={styles.orText}>or</Text>
-          <Auth></Auth>
         </View>
       </View>
     </View>

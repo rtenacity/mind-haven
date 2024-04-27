@@ -78,6 +78,13 @@ export default function LogIn({ navigation }) {
                     titleStyle={styles.buttonText}
                     color="#8A7DDC"
                 />
+                          <Button
+            title="Back"
+            onPress={() => navigation.goBack()}
+            buttonStyle={styles.buttonContainer}
+            titleStyle={styles.buttonText}
+            color="#F5F5F5"
+          />
             </View>
         </View>
     );

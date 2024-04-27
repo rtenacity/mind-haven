@@ -38,12 +38,12 @@ export default function MoodSurveyScreen({ navigation }) {
         stress,
         date: new Date(),
       });
+      navigation.goBack();
     }
   };
 
   return (
     <SafeAreaView style={{ backgroundColor: "#AEC5EB", flex: 1, flexGrow: 1 }}>
-    <Header navigation={navigation}/>
     <ScrollView>
       <View style={styles.headerJournal}>
           <Text style={styles.titleJournal}>

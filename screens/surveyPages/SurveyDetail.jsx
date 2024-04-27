@@ -72,7 +72,7 @@ export default function SurveyDetail({ route, navigation }) {
      <View style={{padding:2}}></View>
       </View>
       <View style={styles.chatHistoryScroll}>
-        <Text style={newStyles.fieldText}>Your mood can change how you act. On On {survey ? new Date(survey.date.toDate()).toLocaleDateString(): "(None)"}, your mood was at:</Text>
+        <Text style={newStyles.fieldText}>Your mood can change how you act. On {survey ? new Date(survey.date.toDate()).toLocaleDateString(): "(None)"}, your mood was at:</Text>
         <View style={{padding:2}}></View>
         <Slider
           style={{ width: 0.8 * width, alignSelf: "center"}}

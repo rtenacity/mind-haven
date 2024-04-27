@@ -61,22 +61,25 @@ export default function DashboardScreen({ navigation }) {
         <Text style={styles.dashboardTitle}>Meditation</Text>
         <View style={styles.dashBox}>
           <Text style={styles.meditationText}>This Week</Text>
-          <MeditationBar />
+          <MeditationBar key={Date.now()} />
         </View>
         <Text style={styles.dashboardTitle}>Recent Entries</Text>
         <View style={styles.dashBox}>
           {journals.length > 0 ? (
-            journals.slice(0, 4).reverse().map(journal => (
-              <TouchableOpacity key={journal.id} onPress={() => navigation.navigate('JournalDetail', { journalId: journal.id })} style={styles.journalEntries}>
-                <View style={styles.imageJournalEntry}>
-                  <Icon name="journal-outline" type="ionicon" size={0.12 * width} />
-                </View>
-                <View style={{ marginLeft: 0.03 * width }}>
-                  <Text style={styles.journalTitle}>{journal.title || "(Untitled)"}</Text>
-                  <Text style={styles.journalDate}>{new Date(journal.date.toDate()).toLocaleDateString()}</Text>
-                </View>
-              </TouchableOpacity>
-            ))
+            journals
+              .sort((a, b) => b.date.toDate() - a.date.toDate())  // Sorting journals by date
+              .slice(0, 4)
+              .map(journal => (
+                <TouchableOpacity key={journal.id} onPress={() => navigation.navigate('JournalDetail', { journalId: journal.id })} style={styles.journalEntries}>
+                  <View style={styles.imageJournalEntry}>
+                    <Icon name="journal-outline" type="ionicon" size={0.12 * width} />
+                  </View>
+                  <View style={{ marginLeft: 0.03 * width }}>
+                    <Text style={styles.journalTitle}>{journal.title || "(Untitled)"}</Text>
+                    <Text style={styles.journalDate}>{new Date(journal.date.toDate()).toLocaleDateString()}</Text>
+                  </View>
+                </TouchableOpacity>
+              ))
           ) : (
             <Text style={styles.meditationText}>No new activity</Text>
           )}

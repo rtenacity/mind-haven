@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'; // Import useEffect normally for other uses
-import { useFocusEffect } from '@react-navigation/native'; // Specifically import useFocusEffect from react-navigation
+import React, { useState, useEffect } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 import { View, Text, SafeAreaView, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
 import styles from '../../styles';
 import Header from '../../component/Header';
@@ -8,23 +8,18 @@ import NavigationBar from '../../component/Navbar';
 import { FIRESTORE, FIREBASE_AUTH } from '../../FirebaseConfig';
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 
-
 const { width, height } = Dimensions.get('window');
-const baseNormalHeight = 0.75 * height;
 
 export default function SurveyScreen({navigation}) {
-    const [journals, setJournals] = useState([]);
+    const [surveys, setSurveys] = useState([]);
     const user = FIREBASE_AUTH.currentUser;
-    const [journalNum, setJournalNum] = useState(6);
-    const [ heightDisplay, setheightDisplay ] = useState(0.75 * height);
+    const [surveyNum, setSurveyNum] = useState(6);
+    const [allSurveysDisplayed, setAllSurveysDisplayed] = useState(false);
+    const [displayHeight, setDisplayHeight] = useState(calculateInitialHeight(6));
 
-    const handleIncreaseSize = () => {
-
-        if (journals.length - journalNum < 0) {
-            return;
-        }
-        setJournalNum(journalNum + 6);
-        setheightDisplay(heightDisplay + baseNormalHeight);
+    function calculateInitialHeight(numEntries) {
+        const baseHeightPerEntry = 0.1 * height; // Adjust based on your styling for each entry
+        return numEntries * baseHeightPerEntry;
     }
 
     useFocusEffect(
@@ -34,29 +29,31 @@ export default function SurveyScreen({navigation}) {
                 return;
             }
 
-            const journalsRef = collection(FIRESTORE, "surveys", user.uid, "surveys");
-            // Consider adjusting the query to suit your specific timestamp requirements
-            const q = query(journalsRef, where("date", "<=", new Date()));
+            const surveysRef = collection(FIRESTORE, "surveys", user.uid, "surveys");
+            const q = query(surveysRef, where("date", "<=", new Date()));
             const unsubscribe = onSnapshot(q, (snapshot) => {
-                const loadedJournals = snapshot.docs.map(doc => ({
+                const loadedSurveys = snapshot.docs.map(doc => ({
                     id: doc.id,
                     ...doc.data()
                 }));
-                setJournals(loadedJournals);
+                setSurveys(loadedSurveys);
             });
 
             return () => unsubscribe(); // Cleanup on unmount
         }, [user])
     );
 
+    const handleDisplayAllSurveys = () => {
+        setAllSurveysDisplayed(true);
+        setDisplayHeight(surveys.length * calculateInitialHeight(1)); // Calculate total height based on all surveys
+    };
 
-
-    return(
+    return (
         <SafeAreaView style={styles.dashboardContainer}>
             <ScrollView>
                 <Header navigation={navigation}/> 
-                <View style = {styles.newJournal}>
-                    <Text style = {styles.dashboardTitle}>New Survey</Text>
+                <View style={styles.newJournal}>
+                    <Text style={styles.dashboardTitle}>New Survey</Text>
                     <TouchableOpacity onPress={() => navigation.navigate('NewSurvey')}>
                         <View style={{
                             width: 0.14 * width,
@@ -71,29 +68,28 @@ export default function SurveyScreen({navigation}) {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.newJournal}>
-                    <Text style = {styles.dashboardTitle}>Recent Entries</Text>
+                    <Text style={styles.dashboardTitle}>Recent Entries</Text>
                     <TouchableOpacity><Icon name="search" size={0.12 * width} style={{textAlign: 'right'}}/></TouchableOpacity>
                 </View>
                 <View style={styles.journalEntries}></View>
-                <View style = {[styles.journalBox, {height: heightDisplay}]}>
-                {journals.reverse().slice(0, journalNum).map(journal => (
-                    <TouchableOpacity key={journal.id} onPress={() => navigation.navigate('SurveyDetail', { surveyId: journal.id })} style={styles.journalEntries}>
-                        <View style = {styles.imageJournalEntry}>
-                            <Icon name="happy-outline" type="ionicon" size={0.12 * width}/>
-                        </View>
-                        <View style={{ marginLeft:0.03 * width }}>
-                            <Text style = {styles.journalTitle}>Survey {new Date(journal.date.toDate()).toLocaleDateString()}</Text>
-                        </View>
-                    </TouchableOpacity>
-                ))}
+                <View style={[styles.journalBox, {height: displayHeight}]}>
+                    {surveys.reverse().slice(0, allSurveysDisplayed ? surveys.length : surveyNum).map(survey => (
+                        <TouchableOpacity key={survey.id} onPress={() => navigation.navigate('SurveyDetail', { surveyId: survey.id })} style={styles.journalEntries}>
+                            <View style={styles.imageJournalEntry}>
+                                <Icon name="happy-outline" type="ionicon" size={0.12 * width}/>
+                            </View>
+                            <View style={{ marginLeft: 0.03 * width }}>
+                                <Text style={styles.journalTitle}>Survey {new Date(survey.date.toDate()).toLocaleDateString()}</Text>
+                            </View>
+                        </TouchableOpacity>
+                    ))}
 
-                    <TouchableOpacity style = {styles.moreButton} onPress={handleIncreaseSize}>
-                        <Icon name = "arrow-down-circle-outline" type = "ionicon" size={0.12 * width}/>
-                        <Text style={styles.journalTitle}>
-                            More
-                        </Text>
-                    </TouchableOpacity>
-                    
+                    {!allSurveysDisplayed && (
+                        <TouchableOpacity style={styles.moreButton} onPress={handleDisplayAllSurveys}>
+                            <Icon name="arrow-down-circle-outline" type="ionicon" size={0.12 * width}/>
+                            <Text style={styles.journalTitle}>More</Text>
+                        </TouchableOpacity>
+                    )}
                 </View>
                 <View style={{marginBottom: height * 0.2}}/>
             </ScrollView>

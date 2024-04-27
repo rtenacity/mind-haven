@@ -27,6 +27,7 @@ export default function JournalScreen({navigation}) {
                 text: text,
                 date: new Date()
             });
+            navigation.navigate('Journal')
         }
     };
 

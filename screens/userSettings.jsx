@@ -1,16 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Dimensions, TouchableOpacity, Alert } from 'react-native';
 import { Button, Icon } from '@rneui/themed';
-import { FIREBASE_AUTH } from '../FirebaseConfig';
+import { getAuth, updateProfile } from "firebase/auth";
 import styles from '../styles';
 import Header from '../component/Header';
-import { getAuth, updateProfile } from "firebase/auth";
 
 const { width, height } = Dimensions.get('window');
 
-
-
 export default function UserSettings({ navigation }) {
+    const [userUpdated, setUserUpdated] = useState(false);
+
+    const auth = getAuth();
+
+    const updateUsername = (newUsername) => {
+        const user = auth.currentUser;
+        updateProfile(user, {
+            displayName: newUsername
+        }).then(() => {
+            Alert.alert("Username updated successfully!");
+            setUserUpdated(prev => !prev);
+        }).catch(error => {
+            Alert.alert("Error", error.message);
+        });
+    };
+
     const changeUsername = () => {
         Alert.prompt(
             'Change Username',
@@ -28,18 +41,6 @@ export default function UserSettings({ navigation }) {
             'plain-text'
         );
     };
-    const auth = getAuth();
-
-    const updateUsername = (newUsername) => {
-        const user = auth.currentUser;
-        updateProfile(user, {
-            displayName: newUsername
-        }).then(() => {
-            Alert.alert("Username updated successfully!");
-        }).catch(error => {
-            Alert.alert("Error", error.message);
-        });
-    };    
 
     const deleteUser = () => {
         Alert.alert(
@@ -53,7 +54,7 @@ export default function UserSettings({ navigation }) {
                 {
                     text: 'Delete',
                     onPress: () => {
-                        const user = FIREBASE_AUTH.currentUser;
+                        const user = auth.currentUser;
                         user.delete().then(() => {
                             Alert.alert("Account deleted successfully.");
                         }).catch(error => {
@@ -67,7 +68,7 @@ export default function UserSettings({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <Header />
+            <Header navigation = {navigation} key={userUpdated} /> 
 
             <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 20 }}>
                 <Text style={styles.titleText}>Settings</Text>
@@ -83,7 +84,7 @@ export default function UserSettings({ navigation }) {
             <TouchableOpacity style={[styles.settingsBox, { backgroundColor: '#AD7DDC' }]} onPress={changeUsername}>
                 <Text style={{ fontSize: 25, fontFamily: "KaiseiOpti_400Regular" }}>Change Username</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.settingsBox, { backgroundColor: '#AD7DDC' }]} onPress={() => FIREBASE_AUTH.signOut()}>
+            <TouchableOpacity style={[styles.settingsBox, { backgroundColor: '#AD7DDC' }]} onPress={() => auth.signOut()}>
                 <Text style={{ fontSize: 25, fontFamily: "KaiseiOpti_400Regular" }}>Sign Out</Text>
             </TouchableOpacity>
             <TouchableOpacity style={[styles.settingsBox, { backgroundColor: '#F88379' }]} onPress={deleteUser}>

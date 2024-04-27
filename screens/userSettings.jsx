@@ -4,6 +4,7 @@ import { Button, Icon } from '@rneui/themed';
 import { getAuth, updateProfile } from "firebase/auth";
 import styles from '../styles';
 import Header from '../component/Header';
+import { EmailAuthProvider, reauthenticateWithCredential } from "firebase/auth";
 
 const { width, height } = Dimensions.get('window');
 
@@ -42,6 +43,35 @@ export default function UserSettings({ navigation }) {
         );
     };
 
+    const reauthenticateAndDelete = () => {
+        Alert.prompt(
+            'Confirm Password',
+            'Enter your password to continue:',
+            [
+                {
+                    text: 'Cancel',
+                    style: 'cancel',
+                },
+                {
+                    text: 'Confirm',
+                    onPress: (password) => {
+                        const user = auth.currentUser;
+                        const credential = EmailAuthProvider.credential(user.email, password);
+                        reauthenticateWithCredential(user, credential)
+                            .then(() => {
+                                deleteUser();  // Call deleteUser after reauthentication
+                            })
+                            .catch(error => {
+                                Alert.alert("Reauthentication failed", error.message);
+                            });
+                    }
+                }
+            ],
+            'secure-text'  // Use 'secure-text' to securely input the password
+        );
+    };
+
+
     const deleteUser = () => {
         Alert.alert(
             "Delete Account",
@@ -68,7 +98,7 @@ export default function UserSettings({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <Header navigation = {navigation} key={userUpdated} /> 
+            <Header navigation={navigation} key={userUpdated} />
 
             <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 20 }}>
                 <Text style={styles.titleText}>Settings</Text>
@@ -87,7 +117,7 @@ export default function UserSettings({ navigation }) {
             <TouchableOpacity style={[styles.settingsBox, { backgroundColor: '#AD7DDC' }]} onPress={() => auth.signOut()}>
                 <Text style={{ fontSize: 25, fontFamily: "KaiseiOpti_400Regular" }}>Sign Out</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.settingsBox, { backgroundColor: '#F88379' }]} onPress={deleteUser}>
+            <TouchableOpacity style={[styles.settingsBox, { backgroundColor: '#F88379' }]} onPress={reauthenticateAndDelete}>
                 <Text style={{ fontSize: 25, fontFamily: "KaiseiOpti_400Regular" }}>Delete Account</Text>
             </TouchableOpacity>
         </View>

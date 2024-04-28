@@ -59,6 +59,7 @@ export default function SurveyDetail({ route, navigation }) {
     return (
         <SafeAreaView style={{ backgroundColor: '#AEC5EB', flex: 1, flexGrow: 1 }}>
             <Header navigation={navigation}/>
+            <ScrollView>
             <View style={styles.headerJournal}>
                 <Text style={styles.titleJournal}>
                     {survey ? new Date(survey.date.toDate()).toLocaleDateString() : "(No Date)"}
@@ -66,7 +67,6 @@ export default function SurveyDetail({ route, navigation }) {
                 <TouchableOpacity onPress={() => navigation.goBack()}><Icon name='exit-to-app' size={0.10 * width} /></TouchableOpacity>
                 <TouchableOpacity onPress={confirmDelete}><Icon name='delete' size={0.10 * width} /></TouchableOpacity>
             </View>
-            <ScrollView>
             <View style={{justifyContent: "center", alignItems:"center"}}>
       <Text style={newStyles.fieldText}>Understanding how you're feeling is key to unlocking mental health.</Text>
      <View style={{padding:2}}></View>

@@ -69,7 +69,6 @@ export default function SurveyScreen({navigation}) {
                 </View>
                 <View style={styles.newJournal}>
                     <Text style={styles.dashboardTitle}>Recent Entries</Text>
-                    <TouchableOpacity><Icon name="search" size={0.12 * width} style={{textAlign: 'right'}}/></TouchableOpacity>
                 </View>
                 <View style={styles.journalEntries}></View>
                 <View style={[styles.journalBox, {height: displayHeight}]}>
